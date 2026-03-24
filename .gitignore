@@ -1,0 +1,33 @@
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Build & Dependencies
+node_modules/
+dist/
+build/
+*.min.js
+*.min.css
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+.env
+.env.local
+
+# Temporary files
+temp/
+tmp/
+cache/
+
+# Editor backups
+*.bak
+*.backup

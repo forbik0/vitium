@@ -1,0 +1,7 @@
+<svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+  <rect width="250" height="250" fill="#1a4f55"/>
+  <text x="125" y="125" font-size="16" fill="#d4af37" text-anchor="middle" dominant-baseline="middle" font-family="Arial">
+    <tspan x="125" dy="0">Portrét</tspan>
+    <tspan x="125" dy="20">člena</tspan>
+  </text>
+</svg>
