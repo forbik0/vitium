@@ -29,6 +29,7 @@
     --transition-slow: 0.5s ease-in-out;
 }
 
+
 /* ============================================
    GLOBAL STYLES
    ============================================ */
@@ -113,12 +114,21 @@ a:hover {
 .navbar-logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
     font-family: var(--font-primary);
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 0.875rem;
     color: var(--color-primary);
 }
+
+.navbar-logo-ds {
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    padding: 5px;
+    min-width: 32px;
+    text-align: center;
+    border-radius: 5px;
+}
+
 
 .logo {
     height: 40px;
@@ -126,11 +136,9 @@ a:hover {
 }
 
 .logo-text {
-    letter-spacing: 2px;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: transparent;
+    background: url('../images/logo_text_alt_small.svg') no-repeat center center;
+    background-size: 8rem;
 }
 
 .nav-menu {
@@ -172,14 +180,28 @@ a:hover {
     display: none;
     flex-direction: column;
     cursor: pointer;
+    gap: 5px;
+    padding: 4px;
 }
 
 .hamburger span {
     width: 25px;
     height: 3px;
     background-color: var(--color-primary);
-    margin: 5px 0;
     transition: all var(--transition-fast);
+    transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(9.5px, 9.5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(9.5px, -9.5px);
 }
 
 /* ============================================
@@ -188,7 +210,7 @@ a:hover {
 
 .hero {
     position: relative;
-    min-height: 100vh;
+    min-height: calc(100vh - 88px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -236,8 +258,14 @@ a:hover {
     font-weight: bold;
     letter-spacing: 8px;
     margin-bottom: var(--spacing-md);
-    color: var(--color-secondary);
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    color: transparent;
+    /*text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);*/
+    
+    background: url('../images/logo_text_zlata_fade.svg') no-repeat center center;
+    background-size: 32rem;
+
+    padding: 300px;
+    margin: -300px
 }
 
 .hero-subtitle {
@@ -245,6 +273,7 @@ a:hover {
     margin-bottom: var(--spacing-lg);
     font-weight: 300;
     letter-spacing: 2px;
+    color: transparent;
 }
 
 .hero-tagline {
