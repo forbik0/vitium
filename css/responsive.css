@@ -19,6 +19,7 @@
 
     .hero-title {
         font-size: 3.5rem;
+        background-size: 20rem;
     }
 
     .about-content {
@@ -94,14 +95,16 @@
 
     /* Hero */
     .hero {
-        min-height: 80vh;
-        padding: var(--spacing-lg) 0;
+        min-height: calc(100dvh - 60px);
+        padding: 0;
     }
 
     .hero-title {
         font-size: 2.5rem;
         letter-spacing: 4px;
         background-size: 20rem;
+        padding: 150px 50px;
+        margin: -150px -50px;
     }
 
     .hero-subtitle {
@@ -242,7 +245,6 @@
 
     /* Hero */
     .hero {
-        min-height: 60vh;
         padding: var(--spacing-md) 0;
     }
 
