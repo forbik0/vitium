@@ -89,6 +89,10 @@ a:hover {
     color: var(--color-accent);
 }
 
+.vitium-text {
+    letter-spacing: 2px;
+}
+
 /* ============================================
    NAVIGATION
    ============================================ */
@@ -272,8 +276,8 @@ a:hover {
     background: url('../images/web_logo_main.svg') no-repeat center center;
     background-size: 32rem;
 
-    padding: 300px;
-    margin: -300px
+    padding-bottom: 50px;
+    margin-bottom: -50px;
 }
 
 .hero-subtitle {

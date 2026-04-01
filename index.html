@@ -305,11 +305,13 @@
                 </div>
                 <div class="contact-form">
                     <h3>Napište nám</h3>
-                    <form>
-                        <input type="text" placeholder="Vaše jméno" required>
-                        <input type="email" placeholder="Váš email" required>
-                        <textarea placeholder="Vaše zpráva" rows="5" required></textarea>
-                        <button type="submit" class="submit-btn">Odeslat</button>
+                    <form id="contact-form">
+                        <input type="text" id="name" placeholder="Vaše jméno" required>
+                        <input type="email" id="email" placeholder="Váš e-mail" required>
+                        <textarea id="message" placeholder="Vaše zpráva" required></textarea>
+                        
+                        <button type="submit" id="submit-btn" class="submit-btn">Odeslat zprávu</button>
+                        <p id="form-status"></p> 
                     </form>
                 </div>
             </div>
@@ -321,7 +323,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>VITIUM</h4>
+                    <h4 class="vitium-text">VITIUM</h4>
                     <p>Produkujeme původní autorské hry, které spojují klasické divadelní prvky s neotřelým uměleckým zpracováním. Vedle stálého repertoáru se věnujeme také různým formám improvizace.</p>
                 </div>
                 <!-- <div class="footer-section">
@@ -364,5 +366,6 @@
             .bindPopup('<strong>Divadlo Spektrum</strong><br>Karlínské náměstí 7<br>186 00 Praha 8');
     </script>
     <script src="js/main.js"></script>
+    <script src="js/send_form.js"></script>
 </body>
 </html>
