@@ -4,6 +4,8 @@ const statusMessage = document.getElementById('form-status');
 contactForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
+  const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]').value;
+
   const btn = document.getElementById('submit-btn');
   const originalBtnText = btn.innerText;
   btn.innerText = "Odesílám...";
@@ -12,7 +14,8 @@ contactForm.addEventListener('submit', async (e) => {
   const formData = {
     name: document.getElementById('name').value,
     email: document.getElementById('email').value,
-    message: document.getElementById('message').value
+    message: document.getElementById('message').value,
+    template_token: turnstileResponse
   };
 
   try {
