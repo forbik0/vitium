@@ -5,7 +5,7 @@
 
 /* Color Variables */
 :root {
-    --color-primary: #154551;        /* Petrolejová */
+    --color-primary: #124551;        /* Petrolejová */
     --color-secondary: #eeb84e;     /* Zlatá */
     --color-dark: #0d2c31;          /* Tmavá petrolejová */
     --color-light: #f5f5f5;         /* Světlá */
@@ -120,9 +120,14 @@ a:hover {
     color: var(--color-primary);
 }
 
+.navbar-logo:hover {
+    color: var(--color-primary);
+}
+
 .navbar-logo-ds {
-    background: var(--color-primary);
-    color: var(--color-secondary);
+    background: var(--color-primary) url('../images/web_logo_i.svg') no-repeat center center;
+    background-size: 20px;
+    color: transparent;/* var(--color-secondary);*/
     padding: 5px;
     min-width: 32px;
     text-align: center;
@@ -131,14 +136,18 @@ a:hover {
 
 
 .logo {
-    height: 40px;
+    height: 30px;
     width: auto;
 }
 
 .logo-text {
-    color: transparent;
-    background: url('../images/logo_text_alt_small.svg') no-repeat center center;
-    background-size: 8rem;
+    /*color: transparent;
+    background: url('../images/web_logo_header.svg') no-repeat center center;
+    background-size: 8rem;*/
+    font-size: 1.6rem;
+    line-height: 1;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
 .nav-menu {
@@ -260,7 +269,7 @@ a:hover {
     margin-bottom: var(--spacing-md);
     color: transparent;
     
-    background: url('../images/logo_text_zlata_fade.svg') no-repeat center center;
+    background: url('../images/web_logo_main.svg') no-repeat center center;
     background-size: 32rem;
 
     padding: 300px;
