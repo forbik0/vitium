@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
     <!-- Navigation -->
@@ -15,13 +20,14 @@
         <div class="navbar-container">
             <a href="index.html" class="navbar-logo">
                 <div class="navbar-logo-ds">DS</div>
-                <img src="images/logo_text_alt_small.svg" alt="Vitium Logo" class="logo">
+                <div class="logo-text">VITIUM</div>
+                <!-- <img src="images/web_logo_header.svg" alt="Vitium Logo" class="logo"> -->
             </a>
             <ul class="nav-menu">
                 <li class="nav-item"><a href="#o-nas" class="nav-link">O nás</a></li>
-                <li class="nav-item"><a href="#clenove" class="nav-link">Členové</a></li>
-                <li class="nav-item"><a href="#repertoar" class="nav-link">Repertoár</a></li>
                 <li class="nav-item"><a href="#vystoupeni" class="nav-link">Vystoupení</a></li>
+                <li class="nav-item"><a href="#repertoar" class="nav-link">Repertoár</a></li>
+                <li class="nav-item"><a href="#clenove" class="nav-link">Členové</a></li>
                 <li class="nav-item"><a href="#kontakt" class="nav-link nav-link-cta">Kontakt</a></li>
             </ul>
             <div class="hamburger">
@@ -78,6 +84,103 @@
                     <div class="stat-item">
                         <h3 class="stat-number">0+</h3>
                         <p class="stat-label">Představení ročně</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vystoupení Section -->
+    <section id="vystoupeni" class="section performances">
+        <div class="container">
+            <h2 class="section-title">Nadcházející Vystoupení</h2>
+<!--             
+            <div class="performances-filter">
+                <button class="filter-btn active" data-filter="all">Všechna</button>
+                <button class="filter-btn" data-filter="month">Duben 2026</button>
+                <button class="filter-btn" data-filter="may">Květen 2026</button>
+            </div> -->
+
+            <div class="performances-list">
+                <div class="performance-item" data-date="2026-06-01">
+                    <div class="performance-date">
+                        <span class="date-day">1</span>
+                        <span class="date-month">Červen</span>
+                    </div>
+                    <div class="performance-details">
+                        <h3 class="performance-title">My čtyři (premiéra)</h3>
+                        <p class="performance-venue">Divadlo Spektrum</p>
+                        <p class="performance-time">19:00</p>
+                    </div>
+                    <div class="performance-action">
+                        <a href="#" class="ticket-btn">Vstupenky</a>
+                    </div>
+                </div>
+
+                <div class="performance-item" data-date="2026-11-09">
+                    <div class="performance-date">
+                        <span class="date-day">9</span>
+                        <span class="date-month">Listopad</span>
+                    </div>
+                    <div class="performance-details">
+                        <h3 class="performance-title">Přijdu hned (premiéra)</h3>
+                        <p class="performance-venue">Divadlo Spektrum</p>
+                        <p class="performance-time">19:00</p>
+                    </div>
+                    <div class="performance-action">
+                        <a href="#" class="ticket-btn">Vstupenky</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Repertoár Section -->
+    <section id="repertoar" class="section repertoire">
+        <div class="container">
+            <h2 class="section-title">Repertoár</h2>
+            <div class="repertoire-content">
+                <div class="repertoire-intro">
+                    <p>Produkujeme původní autorské hry, které spojují klasické divadelní prvky s neotřelým uměleckým zpracováním. 
+                        Vedle stálého repertoáru se věnujeme také různým formám improvizace.</p>
+                </div>
+                
+                <div class="repertoire-grid">
+                    <div class="repertoire-card">
+                        <div class="repertoire-image">
+                            <img src="images/placeholder-production.svg" alt="Představení">
+                        </div>
+                        <h3 class="repertoire-title">Improshow</h3>
+                        <p class="repertoire-type">Improvizace</p>
+                        <p class="repertoire-description">Bez scénáře. Bez příprav. Jen vaše nápady a naše improvizace. Přijďte se podívat, jak přímo před vašima očima vzniká divadlo - prostřednictvím známých i originálních improvizačních her.</p>
+                        <div class="repertoire-meta">
+                            <span class="meta-item">60-75 min</span>
+                        </div>
+                    </div>
+                    <div class="repertoire-card">
+                        <div class="repertoire-image">
+                            <img src="images/obraz_my_ctyri.jpeg" alt="Představení">
+                            <div class="repertoire-tag">Připravujeme</div>
+                        </div>
+                        <h3 class="repertoire-title">My čtyři</h3>
+                        <p class="repertoire-type">Psychologické drama</p>
+                        <p class="repertoire-description">Pět let po tragédii se zdálo, že je Kristýna z nejhoršího venku. Teď se ale v jejím okolí objevuje někdo, kdo zná její nejtajnější strachy a systematicky jí ničí život. Mrazivé psychologické drama o hledání pravdy v labyrintu lží a neznámých hrozeb.</p>
+                        <div class="repertoire-meta">
+                            <span class="meta-item">90 min + přestávka</span>
+                        </div>
+                    </div>
+
+                    <div class="repertoire-card">
+                        <div class="repertoire-image">
+                            <img src="images/placeholder-production.svg" alt="Představení">
+                            <div class="repertoire-tag">Připravujeme</div>
+                        </div>
+                        <h3 class="repertoire-title">Přijdu hned</h3>
+                        <p class="repertoire-type">Absurdní komedie</p>
+                        <p class="repertoire-description">Zapomeňte na tunel se světlem. Skutečná pravda o životě po smrti je taková, že i na věčnosti narazíte na špatně vyplněný formulář a úředníka, který má zrovna pauzu.</p>
+                        <div class="repertoire-meta">
+                            <span class="meta-item">70 min</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -173,103 +276,6 @@
                     <h3 class="member-name">Týna Hejzlarová</h3>
                     <p class="member-role">Herecký soubor</p>
                     <p class="member-bio">Mladá krev našeho souboru, která přinásí nový pohled a nápaditost do všech svých charakterů.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Repertoár Section -->
-    <section id="repertoar" class="section repertoire">
-        <div class="container">
-            <h2 class="section-title">Repertoár</h2>
-            <div class="repertoire-content">
-                <div class="repertoire-intro">
-                    <p>Produkujeme původní autorské hry, které spojují klasické divadelní prvky s neotřelým uměleckým zpracováním. 
-                        Vedle stálého repertoáru se věnujeme také různým formám improvizace.</p>
-                </div>
-                
-                <div class="repertoire-grid">
-                    <div class="repertoire-card">
-                        <div class="repertoire-image">
-                            <img src="images/placeholder-production.svg" alt="Představení">
-                        </div>
-                        <h3 class="repertoire-title">Improshow</h3>
-                        <p class="repertoire-type">Improvizace</p>
-                        <p class="repertoire-description">Bez scénáře. Bez příprav. Jen vaše nápady a naše improvizace. Přijďte se podívat, jak přímo před vašima očima vzniká divadlo - prostřednictvím známých i originálních improvizačních her.</p>
-                        <div class="repertoire-meta">
-                            <span class="meta-item">60-75 min</span>
-                        </div>
-                    </div>
-                    <div class="repertoire-card">
-                        <div class="repertoire-image">
-                            <img src="images/obraz_my_ctyri.jpeg" alt="Představení">
-                            <div class="repertoire-tag">Připravujeme</div>
-                        </div>
-                        <h3 class="repertoire-title">My čtyři</h3>
-                        <p class="repertoire-type">Psychologické drama</p>
-                        <p class="repertoire-description">Pět let po tragédii se zdálo, že je Kristýna z nejhoršího venku. Teď se ale v jejím okolí objevuje někdo, kdo zná její nejtajnější strachy a systematicky jí ničí život. Mrazivé psychologické drama o hledání pravdy v labyrintu lží a neznámých hrozeb.</p>
-                        <div class="repertoire-meta">
-                            <span class="meta-item">90 min + přestávka</span>
-                        </div>
-                    </div>
-
-                    <div class="repertoire-card">
-                        <div class="repertoire-image">
-                            <img src="images/placeholder-production.svg" alt="Představení">
-                            <div class="repertoire-tag">Připravujeme</div>
-                        </div>
-                        <h3 class="repertoire-title">Přijdu hned</h3>
-                        <p class="repertoire-type">Absurdní komedie</p>
-                        <p class="repertoire-description">Zapomeňte na tunel se světlem. Skutečná pravda o životě po smrti je taková, že i na věčnosti narazíte na špatně vyplněný formulář a úředníka, který má zrovna pauzu.</p>
-                        <div class="repertoire-meta">
-                            <span class="meta-item">70 min</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Vystoupení Section -->
-    <section id="vystoupeni" class="section performances">
-        <div class="container">
-            <h2 class="section-title">Nadcházející Vystoupení</h2>
-<!--             
-            <div class="performances-filter">
-                <button class="filter-btn active" data-filter="all">Všechna</button>
-                <button class="filter-btn" data-filter="month">Duben 2026</button>
-                <button class="filter-btn" data-filter="may">Květen 2026</button>
-            </div> -->
-
-            <div class="performances-list">
-                <div class="performance-item" data-date="2026-06-01">
-                    <div class="performance-date">
-                        <span class="date-day">1</span>
-                        <span class="date-month">Červen</span>
-                    </div>
-                    <div class="performance-details">
-                        <h3 class="performance-title">My čtyři (premiéra)</h3>
-                        <p class="performance-venue">Divadlo Spektrum</p>
-                        <p class="performance-time">19:00</p>
-                    </div>
-                    <div class="performance-action">
-                        <a href="#" class="ticket-btn">Vstupenky</a>
-                    </div>
-                </div>
-
-                <div class="performance-item" data-date="2026-11-09">
-                    <div class="performance-date">
-                        <span class="date-day">9</span>
-                        <span class="date-month">Listopad</span>
-                    </div>
-                    <div class="performance-details">
-                        <h3 class="performance-title">Přijdu hned (premiéra)</h3>
-                        <p class="performance-venue">Divadlo Spektrum</p>
-                        <p class="performance-time">19:00</p>
-                    </div>
-                    <div class="performance-action">
-                        <a href="#" class="ticket-btn">Vstupenky</a>
-                    </div>
                 </div>
             </div>
         </div>
