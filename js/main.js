@@ -120,31 +120,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Contact Form (basic validation)
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.querySelector('.contact-form form');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = this.querySelector('input[type="text"]').value;
-            const email = this.querySelector('input[type="email"]').value;
-            const message = this.querySelector('textarea').value;
-            
-            // Basic validation
-            if (name && email && message) {
-                // Here you would normally send the form data to a server
-                alert('Děkujeme za vaši zprávu! Brzy se vám ozvu.');
-                this.reset();
-            } else {
-                alert('Prosím vyplňte všechna pole.');
-            }
-        });
-    }
-});
-
 // Header scroll effect
 window.addEventListener('scroll', function() {
     const navbar = document.querySelector('.navbar');

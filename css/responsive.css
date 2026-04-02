@@ -199,6 +199,15 @@
         grid-template-columns: 1fr;
         gap: var(--spacing-lg);
     }
+
+    .gallery-item {
+        width: 300px;
+        height: 300px;
+    }
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
 }
 
 /* Malá mobilní zařízení (320px - 480px) */
@@ -227,7 +236,6 @@
 
     .navbar-logo {
         gap: var(--spacing-xs);
-        font-size: 1.2rem;
     }
 
     .logo {
