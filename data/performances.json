@@ -6,7 +6,8 @@
     "time": "19:00",
     "date": "2026-06-08",
     "price": 150,
-    "type": "Psychologické drama"
+    "type": "Psychologické drama",
+    "ticket_link": "own"
   },
   {
     "id": "2026-11-09",
@@ -15,6 +16,7 @@
     "time": "19:00",
     "date": "2026-11-09",
     "price": 150,
-    "type": "Absurdní komedie"
+    "type": "Absurdní komedie",
+    "ticket_link": null
   }
 ]

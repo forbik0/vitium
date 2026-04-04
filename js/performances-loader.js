@@ -16,6 +16,16 @@ async function loadAndRenderPerformances() {
             const months = ['Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec'];
             const monthName = months[date.getMonth()];
             
+            var ticketHtml = "";
+            if (perf.ticket_link !== null) {
+                var ticketLink = perf.ticket_link === 'own' ? `tickets.html?id=${perf.id}` : perf.ticket_link;
+                ticketHtml = `
+                    <div class="performance-action">
+                        <a href="${ticketLink}" class="ticket-btn">Vstupenky</a>
+                    </div>
+                `;
+            }
+
             return `
                 <div class="performance-item" data-date="${perf.date}">
                     <div class="performance-date">
@@ -27,9 +37,7 @@ async function loadAndRenderPerformances() {
                         <p class="performance-venue">${perf.venue}</p>
                         <p class="performance-time">${perf.time}</p>
                     </div>
-                    <div class="performance-action">
-                        <a href="tickets.html?id=${perf.id}" class="ticket-btn">Vstupenky</a>
-                    </div>
+                    ${ticketHtml}
                 </div>
             `;
         }).join('');
