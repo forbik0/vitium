@@ -7,7 +7,7 @@
     grid-template-columns: 1fr 1fr;
 }
 
-/*.performance-details-box {
+.performance-details-box {
     background-color: var(--color-primary);
     border-radius: 8px;
     padding: 30px;
@@ -19,6 +19,10 @@
     font-size: 28px;
     margin-bottom: 20px;
     color: var(--color-secondary);
+}
+
+.performance-header {
+    position: relative;
 }
 
 .detail-item {
@@ -49,96 +53,6 @@
     font-size: 32px;
     color: var(--color-secondary);
     font-weight: bold;
-}*/
-
-/* Kontejner detailů */
-.performance-details-box {
-    position: relative;
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    overflow: hidden; /* Aby progress bar v rozích nepřesahoval */
-    margin-bottom: 2rem;
-}
-
-.performance-content-wrapper {
-    padding: 25px;
-}
-
-/* Progress Bar systém */
-.capacity-progress-container {
-    height: 8px;
-    background-color: #eee;
-    width: 100%;
-}
-
-.capacity-progress-bar {
-    height: 100%;
-    width: var(--progress, 0%); /* Použije proměnnou z JS */
-    background-color: #4caf50; /* Výchozí zelená */
-    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Barevné stavy progress baru */
-.capacity-progress-bar.warning {
-    background-color: #ff9800;
-}
-
-.capacity-progress-bar.critical {
-    background-color: #f44336;
-    box-shadow: 0 0 10px rgba(244, 67, 54, 0.3);
-}
-
-/* Typografie */
-.performance-title-large {
-    font-size: 2.2rem;
-    color: #1a1a1a;
-    margin: 0 0 1.5rem 0;
-    line-height: 1.1;
-    font-weight: 800;
-}
-
-.details-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    border-top: 1px solid #f0f0f0;
-    padding-top: 20px;
-}
-
-.detail-item {
-    display: flex;
-    flex-direction: column;
-}
-
-.detail-label {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #888;
-    margin-bottom: 5px;
-}
-
-.detail-value {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-}
-
-.price-highlight {
-    color: var(--primary-color, #e63946);
-    font-size: 1.3rem;
-}
-
-/* Responzivita */
-@media (max-width: 768px) {
-    .performance-title-large {
-        font-size: 1.6rem;
-    }
-    
-    .details-grid {
-        grid-template-columns: 1fr 1fr;
-    }
 }
 
 .reservation-form-box {
@@ -272,7 +186,24 @@
     text-align: center;
     font-size: 16px;
 }
-/*
+
+.capacity-tag {
+    background: #e0f2e1aa;
+    color: #004940;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+}
+
+.capacity-tag.sold-out {
+    background: #ffebeeaa;
+    color: #c62828;
+}
+
 @media (max-width: 768px) {
     .tickets-container {
         grid-template-columns: 1fr;
@@ -287,4 +218,3 @@
         font-size: 24px;
     }
 }
-*/
