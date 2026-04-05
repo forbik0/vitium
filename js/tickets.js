@@ -148,7 +148,6 @@ function renderTicketsForm() {
             ` : `
                 <div class="sold-out-notice">
                     <p>Omlouváme se, ale toto představení je již plně obsazeno.</p>
-                    <a href="index.html#vystoupeni" class="ticket-btn">Zpět na program</a>
                 </div>
             `}
         </div>
