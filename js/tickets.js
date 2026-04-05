@@ -144,8 +144,6 @@ function renderTicketsForm() {
                         <input type="text" id="notes" name="notes" placeholder="Speciální požadavky...">
                     </div>
 
-                    <div class="cf-turnstile" data-sitekey="0x4AAAAAACzHMOJk9QoTm_Pq"></div>
-
                     <button type="submit" id="submit-btn" class="submit-btn-tickets">Zaslat rezervaci</button>
                     <div id="form-status" class="form-status"></div>
                 </form>
