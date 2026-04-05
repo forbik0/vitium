@@ -87,44 +87,27 @@ function renderTicketsForm() {
     } else {
         capacityStatus = `<span class="capacity-tag">Volná místa: ${availableCapacity}</span>`;
     }
-    
-    const totalCapacity = performance.total_capacity || 60; 
-    const percentFull = Math.max(0, Math.min(100, ((totalCapacity - availableCapacity) / totalCapacity) * 100));
-
-    // Určíme stav pro barvu
-    let capacityState = 'normal';
-    if (percentFull > 70) capacityState = 'warning';
-    if (percentFull > 90) capacityState = 'critical';
 
     container.innerHTML = `
         <div class="performance-details-box">
-            <div class="capacity-progress-container">
-                <div class="capacity-progress-bar ${capacityState}" 
-                    style="--progress: ${percentFull}%">
-                </div>
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+                <h2>${performance.title}</h2>
+                ${capacityStatus}
             </div>
-
-            <div class="performance-content-wrapper">
-                <h2 class="performance-title-large">${performance.title}</h2>
-                
-                <div class="details-grid">
-                    <div class="detail-item">
-                        <span class="detail-label">Status</span>
-                        <span class="detail-value">${capacityStatus}</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Datum a čas</span>
-                        <span class="detail-value">${formatDate(performance.date)} (${performance.time})</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Místo</span>
-                        <span class="detail-value">${performance.venue}</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Cena</span>
-                        <span class="detail-value price-highlight">${performance.price} Kč</span>
-                    </div>
-                </div>
+            <div class="detail-item">
+                <div class="detail-label">Datum a čas</div>
+                <div class="detail-value">${formatDate(performance.date)} (${performance.time})</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">Místo</div>
+                <div class="detail-value">${performance.venue}</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">Žánr</div>
+                <div class="detail-value">${performance.genre}</div> </div>
+            <div class="detail-item">
+                <div class="detail-label">Cena za vstupenku</div>
+                <div class="price-highlight">${performance.price} Kč</div>
             </div>
         </div>
 
