@@ -19,7 +19,7 @@ contactForm.addEventListener('submit', async (e) => {
   };
 
   try {
-    const workerUrl = 'https://api.vitium.art';
+    const workerUrl = 'https://post-api.vitium.art';
 
     const response = await fetch(workerUrl, {
       method: 'POST',
@@ -28,14 +28,14 @@ contactForm.addEventListener('submit', async (e) => {
     });
 
     if (response.ok) {
-      statusMessage.textContent = "Zpráva byla úspěšně odeslána! ✅";
+      statusMessage.textContent = "Zpráva byla úspěšně odeslána!";
       statusMessage.style.color = "green";
       contactForm.reset();
     } else {
       throw new Error("Chyba při odesílání.");
     }
   } catch (error) {
-    statusMessage.textContent = "Chyba: " + error.message + " ❌";
+    statusMessage.textContent = "Chyba: " + error.message;
     statusMessage.style.color = "red";
   } finally {
     btn.innerText = originalBtnText;
