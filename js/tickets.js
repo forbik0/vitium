@@ -206,12 +206,27 @@ async function handleFormSubmit(e) {
         const result = await response.json();
 
         if (response.ok) {
+            // 1. Aktualizujeme data z API (sníží se remaining_count v paměti)
+            await loadPerformances(); 
+            
+            // 2. Překreslíme celé UI (vyčistí se inputy a zaktualizují se limity v selectu)
+            renderTicketsForm(); 
+
+            // 3. RESET Turnstile - nezbytné pro další případnou rezervaci
+            if (typeof turnstile !== 'undefined') {
+                turnstile.reset();
+            }
+
+            // 4. Zobrazíme úspěch (musí být až po renderu, aby tam status div už/ještě byl)
             showFormStatus(`Rezervace úspěšná! ${result.message}`, 'success');
-            e.target.reset();
-            document.getElementById('total-price-display').textContent = 'Celkem: 0 Kč';
-            if (typeof turnstile !== 'undefined') turnstile.reset();
+            
+            // Scrollování nahoru k potvrzení, aby uživatel viděl, že se to povedlo
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
         } else {
-            // Pokud Worker vrátí chybu (např. vyprodáno)
+            // Pokud selže verifikace nebo je vyprodáno, musíme Turnstile taky resetovat, 
+            // aby se uživatel mohl pokusit o opravu/znovupotvrzení
+            if (typeof turnstile !== 'undefined') turnstile.reset();
             throw new Error(result.error || 'Chyba při odesílání rezervace.');
         }
     } catch (error) {
