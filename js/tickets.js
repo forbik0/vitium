@@ -1,65 +1,102 @@
+// tickets.js
+
 // Načítání dat o představeních
 let performances = {};
 
 async function loadPerformances() {
     try {
-        const response = await fetch('data/performances.json');
+        // Načtení dat z API
+        const response = await fetch('https://api.vitium.art/events');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        // Konverze pole na objekt s ID jako klíč
+        
+        // Vyčistíme stará data a naplníme novými z API
+        performances = {};
         data.forEach(perf => {
-            performances[perf.id] = perf;
+            const dateObj = new Date(perf.scheduled_at);
+            
+            // Mapujeme data z DB na klíče, které používá zbytek JS
+            performances[perf.id] = {
+                id: perf.id,
+                title: perf.title,
+                venue: perf.venue,
+                price: perf.price || 0,
+                genre: perf.genre || 'Divadlo', 
+                date: perf.scheduled_at.split('T')[0],
+                time: dateObj.toLocaleTimeString('cs-CZ', { hour: '2-digit', minute: '2-digit' }),
+                remaining_count: perf.remaining_count
+            };
         });
+
     } catch (error) {
-        console.error('Chyba při načítání představení:', error);
+        console.error('Chyba při načítání dat pro rezervace:', error);
+        showFormStatus('Nepodařilo se načíst seznam představení.', 'error');
     }
 }
 
-// Funkce pro formátování data
+// Funkce pro formátování data (pro zobrazení uživateli)
 function formatDate(dateString) {
-    const date = new Date(dateString + 'T00:00:00');
+    if (!dateString) return '';
+    const date = new Date(dateString);
     const months = ['ledna', 'února', 'března', 'dubna', 'května', 'června', 'července', 'srpna', 'září', 'října', 'listopadu', 'prosince'];
-    const day = date.getDate();
-    const month = months[date.getMonth()];
-    const year = date.getFullYear();
-    return `${day}. ${month} ${year}`;
+    return `${date.getDate()}. ${months[date.getMonth()]} ${date.getFullYear()}`;
 }
 
-// Načtení query parametrů
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
 
-// Vykreslení formuláře pro rezervaci
 function renderTicketsForm() {
-    const performanceId = getQueryParam('id') || getQueryParam('date');
+    const performanceId = getQueryParam('id');
     const performance = performances[performanceId];
 
     const container = document.getElementById('tickets-form-container');
     const errorContainer = document.getElementById('error-container');
 
     if (!performance) {
-        container.innerHTML = '';
-        errorContainer.innerHTML = `
-            <div class="error-message">
-                <p><strong>Chyba:</strong> Představení nenalezeno. Prosím, <a href="index.html#vystoupeni">vyberte představení ze seznamu</a>.</p>
-            </div>
-        `;
+        if (container) container.innerHTML = '';
+        if (errorContainer) {
+            errorContainer.innerHTML = `<div class="error-message"><p>Představení nenalezeno.</p></div>`;
+        }
         return;
     }
 
-    const formattedDate = formatDate(performance.date);
-    const totalPrice = performance.price; // cena za vstupenku
+    // 1. Logika pro omezení počtu vstupenek
+    const maxTicketsAllowed = 6; // tvůj strop na jednu rezervaci
+    const availableCapacity = performance.remaining_count ?? 0;
+    const realLimit = Math.min(maxTicketsAllowed, availableCapacity);
+
+    // 2. Generování možností pro select
+    let optionsHtml = '<option value="">- Vyberte počet -</option>';
+    if (availableCapacity > 0) {
+        for (let i = 1; i <= realLimit; i++) {
+            const word = i === 1 ? 'vstupenka' : (i < 5 ? 'vstupenky' : 'vstupenek');
+            optionsHtml += `<option value="${i}">${i} ${word}</option>`;
+        }
+    }
+
+    // 3. Status kapacity (barevné odlišení)
+    let capacityStatus = '';
+    if (availableCapacity <= 0) {
+        capacityStatus = '<span class="capacity-tag sold-out">Vyprodáno</span>';
+    } else if (availableCapacity < 10) {
+        capacityStatus = `<span class="capacity-tag low-capacity">Posledních ${availableCapacity} míst!</span>`;
+    } else {
+        capacityStatus = `<span class="capacity-tag">Volná místa: ${availableCapacity}</span>`;
+    }
 
     container.innerHTML = `
         <div class="performance-details-box">
-            <h2>${performance.title}</h2>
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+                <h2>${performance.title}</h2>
+                ${capacityStatus}
+            </div>
             <div class="detail-item">
                 <div class="detail-label">Datum a čas</div>
-                <div class="detail-value">${formattedDate} (${performance.time})</div>
+                <div class="detail-value">${formatDate(performance.date)} (${performance.time})</div>
             </div>
             <div class="detail-item">
                 <div class="detail-label">Místo</div>
@@ -67,8 +104,7 @@ function renderTicketsForm() {
             </div>
             <div class="detail-item">
                 <div class="detail-label">Žánr</div>
-                <div class="detail-value">${performance.type}</div>
-            </div>
+                <div class="detail-value">${performance.genre}</div> </div>
             <div class="detail-item">
                 <div class="detail-label">Cena za vstupenku</div>
                 <div class="price-highlight">${performance.price} Kč</div>
@@ -77,154 +113,125 @@ function renderTicketsForm() {
 
         <div class="reservation-form-box">
             <h2>Rezervace vstupenek</h2>
-            <form id="reservation-form">
-                <div class="form-group">
-                    <label for="name">Vaše jméno *</label>
-                    <input type="text" id="name" name="name" placeholder="Zadejte své jméno" minlength="2" maxlength="100" required>
-                </div>
+            ${availableCapacity > 0 ? `
+                <form id="reservation-form">
+                    <div class="form-group">
+                        <label for="name">Vaše jméno *</label>
+                        <input type="text" id="name" name="name" placeholder="Zadejte své jméno" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" placeholder="Váš e-mail" maxlength="255" required>
-                </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" placeholder="Váš e-mail" required>
+                    </div>
 
-                <div class="form-group">
-                    <div class="ticket-quantity">
-                        <div>
-                            <label for="quantity">Počet vstupenek *</label>
-                            <select id="quantity" name="quantity" required>
-                                <option value="">- Vyberte počet -</option>
-                                <option value="1">1 vstupenka</option>
-                                <option value="2">2 vstupenky</option>
-                                <option value="3">3 vstupenky</option>
-                                <option value="4">4 vstupenky</option>
-                                <option value="5">5 vstupenek</option>
-                                <option value="6">6 vstupenek</option>
-                            </select>
-                        </div>
-                        <div class="quantity-info">
-                            <div id="total-price-display">Celkem: 0 Kč</div>
+                    <div class="form-group">
+                        <div class="ticket-quantity">
+                            <div>
+                                <label for="quantity">Počet vstupenek *</label>
+                                <select id="quantity" name="quantity" required>
+                                    ${optionsHtml}
+                                </select>
+                            </div>
+                            <div class="quantity-info">
+                                <div id="total-price-display">Celkem: 0 Kč</div>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="notes">Poznámka (volitelné)</label>
-                    <input type="text" id="notes" name="notes" placeholder="Speciální požadavky, sdělení...">
-                </div>
+                    <div class="form-group">
+                        <label for="notes">Poznámka (volitelné)</label>
+                        <input type="text" id="notes" name="notes" placeholder="Speciální požadavky...">
+                    </div>
 
-                <button type="submit" class="submit-btn-tickets">Zaslat rezervaci</button>
-                <div id="form-status" class="form-status"></div>
-            </form>
+                    <div class="cf-turnstile" data-sitekey="0x4AAAAAACzHMOJk9QoTm_Pq"></div>
+
+                    <button type="submit" id="submit-btn" class="submit-btn-tickets">Zaslat rezervaci</button>
+                    <div id="form-status" class="form-status"></div>
+                </form>
+            ` : `
+                <div class="sold-out-notice">
+                    <p>Omlouváme se, ale toto představení je již plně obsazeno.</p>
+                    <a href="index.html#vystoupeni" class="ticket-btn">Zpět na program</a>
+                </div>
+            `}
         </div>
     `;
 
-    // Event listener pro dynamické počítání ceny
-    const quantitySelect = document.getElementById('quantity');
-    const totalPriceDisplay = document.getElementById('total-price-display');
-
-    if (quantitySelect) {
-        quantitySelect.addEventListener('change', function() {
-            if (this.value) {
-                const total = performance.price * parseInt(this.value);
-                totalPriceDisplay.textContent = `Celkem: ${total} Kč`;
-            } else {
-                totalPriceDisplay.textContent = 'Celkem: 0 Kč';
-            }
+    // Event listenery (přepočet ceny a submit)
+    if (availableCapacity > 0) {
+        document.getElementById('quantity').addEventListener('change', function() {
+            const total = performance.price * parseInt(this.value || 0);
+            document.getElementById('total-price-display').textContent = `Celkem: ${total} Kč`;
         });
-    }
-
-    // Event listener pro odeslání formuláře
-    const form = document.getElementById('reservation-form');
-    if (form) {
-        form.addEventListener('submit', handleFormSubmit);
+        document.getElementById('reservation-form').addEventListener('submit', handleFormSubmit);
     }
 }
 
-// Obsluha formuláře
 async function handleFormSubmit(e) {
     e.preventDefault();
+    
+    const statusElement = document.getElementById('form-status');
+    const submitBtn = document.getElementById('submit-btn');
+    
+    // 1. Získání Turnstile tokenu
+    const turnstileResponse = document.querySelector('[name="cf-turnstile-response"]').value;
 
+    const performanceId = getQueryParam('id');
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
     const quantity = parseInt(document.getElementById('quantity').value);
     const notes = document.getElementById('notes').value.trim();
-    const performanceId = getQueryParam('id') || getQueryParam('date');
-    const performance = performances[performanceId];
 
-    // Validace
-    if (!name || !email || !quantity) {
-        showFormStatus('Prosím, vyplňte všechna povinná pole.', 'error');
-        return;
-    }
-
-    if (quantity < 1 || quantity > 6) {
-        showFormStatus('Počet vstupenek musí být mezi 1 a 6.', 'error');
-        return;
-    }
-
-    // Příprava dat pro API
+    // Příprava dat přesně tak, jak je očekává tvůj Worker
     const reservationData = {
-        performance_id: performanceId,
-        performance_title: performance.title,
-        performance_date: performance.date,
-        performance_time: performance.time,
-        venue: performance.venue,
+        event_id: performanceId,
         name: name,
         email: email,
-        quantity: quantity,
-        total_price: performance.price * quantity,
-        notes: notes || null,
-        created_at: new Date().toISOString()
+        count: quantity,
+        note: notes,
+        template_token: turnstileResponse // Token pro ověření ve Workeru
     };
 
-    console.log('Odesílání rezervace:', reservationData);
+    // Vizuální zpětná vazba
+    submitBtn.disabled = true;
+    submitBtn.innerText = 'Odesílám...';
+    statusElement.style.display = 'block';
 
-    // TODO: Zaslání na API
-    // Zatím jen simulujeme úspěšnou odpověď
-    showFormStatus('Vaše rezervace byla úspěšně zaslána! Brzy se vám ozveme.', 'success');
-    document.getElementById('reservation-form').reset();
-    document.getElementById('total-price-display').textContent = 'Celkem: 0 Kč';
+    try {
+        const response = await fetch('https://api.vitium.art/reserve', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(reservationData)
+        });
 
-    // Pozdější implementace API volání:
-    // try {
-    //     const response = await fetch('/api/reservations', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(reservationData)
-    //     });
-    //
-    //     if (!response.ok) {
-    //         throw new Error(`Chyba serveru: ${response.status}`);
-    //     }
-    //
-    //     const result = await response.json();
-    //     showFormStatus('Vaše rezervace byla úspěšně zaslána! Brzy se vám ozveme.', 'success');
-    //     document.getElementById('reservation-form').reset();
-    //     document.getElementById('total-price-display').textContent = 'Celkem: 0 Kč';
-    // } catch (error) {
-    //     console.error('Chyba při odesílání formuláře:', error);
-    //     showFormStatus('Došlo k chybě. Prosím, zkuste to později nebo nás kontaktujte.', 'error');
-    // }
-}
+        const result = await response.json();
 
-// Zobrazení zprávy o stavu formuláře
-function showFormStatus(message, type) {
-    const statusElement = document.getElementById('form-status');
-    statusElement.textContent = message;
-    statusElement.className = `form-status ${type}`;
-
-    // Automaticky skrýt zprávu o chybě po 5 sekundách
-    if (type === 'error') {
-        setTimeout(() => {
-            statusElement.style.display = 'none';
-        }, 5000);
+        if (response.ok) {
+            showFormStatus(`Rezervace úspěšná! ${result.message}`, 'success');
+            e.target.reset();
+            document.getElementById('total-price-display').textContent = 'Celkem: 0 Kč';
+            if (typeof turnstile !== 'undefined') turnstile.reset();
+        } else {
+            // Pokud Worker vrátí chybu (např. vyprodáno)
+            throw new Error(result.error || 'Chyba při odesílání rezervace.');
+        }
+    } catch (error) {
+        showFormStatus(error.message, 'error');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerText = 'Zaslat rezervaci';
     }
 }
 
-// Inicializace
+function showFormStatus(message, type) {
+    const statusElement = document.getElementById('form-status');
+    statusElement.style.display = 'block';
+    statusElement.textContent = message;
+    statusElement.className = `form-status ${type}`;
+}
+
+// Spuštění
 document.addEventListener('DOMContentLoaded', async () => {
     await loadPerformances();
     renderTicketsForm();

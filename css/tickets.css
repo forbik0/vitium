@@ -183,6 +183,25 @@
     font-size: 16px;
 }
 
+.capacity-tag {
+    background: #e0f2f1;
+    color: #00796b;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.capacity-tag.low-capacity {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.capacity-tag.sold-out {
+    background: #eeeeee;
+    color: #616161;
+}
+
 @media (max-width: 768px) {
     .tickets-container {
         grid-template-columns: 1fr;
