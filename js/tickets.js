@@ -139,7 +139,7 @@ function renderTicketsForm() {
 
                     <div class="form-group">
                         <label for="notes">Poznámka (volitelné)</label>
-                        <input type="text" id="notes" name="notes" placeholder="Speciální požadavky...">
+                        <input type="text" id="notes" name="notes" placeholder="...">
                     </div>
 
                     <button type="submit" id="submit-btn" class="submit-btn-tickets">Zaslat rezervaci</button>

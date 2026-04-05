@@ -64,6 +64,10 @@ body {
     background-color: var(--color-white);
     line-height: 1.6;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .container {
@@ -118,6 +122,8 @@ a:hover {
     background-color: var(--color-white);
     box-shadow: 0 2px 8px rgba(26, 79, 85, 0.1);
     padding: var(--spacing-md) 0;
+    flex-shrink: 0;
+    z-index: 2000;
 }
 
 .navbar-container {
@@ -341,6 +347,7 @@ a:hover {
 .section {
     padding: var(--spacing-2xl) 0;
     scroll-margin-top: 80px;
+    flex: 1 0 auto;
 }
 
 .section-title {
@@ -871,6 +878,7 @@ a:hover {
     background-color: var(--color-dark);
     color: var(--color-light);
     padding: var(--spacing-2xl) 0 var(--spacing-lg);
+    flex-shrink: 0;
 }
 
 .footer-content {
