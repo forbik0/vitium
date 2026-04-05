@@ -79,6 +79,15 @@ function renderTicketsForm() {
     }
 
     // 3. Status kapacity (barevné odlišení)
+    let capacityStatus = '';
+    if (availableCapacity <= 0) {
+        capacityStatus = '<span class="capacity-tag sold-out">Vyprodáno</span>';
+    } else if (availableCapacity < 10) {
+        capacityStatus = `<span class="capacity-tag low-capacity">Posledních ${availableCapacity} míst!</span>`;
+    } else {
+        capacityStatus = `<span class="capacity-tag">Volná místa: ${availableCapacity}</span>`;
+    }
+    
     const totalCapacity = performance.total_capacity || 60; 
     const percentFull = Math.max(0, Math.min(100, ((totalCapacity - availableCapacity) / totalCapacity) * 100));
 
