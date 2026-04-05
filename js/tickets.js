@@ -81,16 +81,14 @@ function renderTicketsForm() {
     // 3. Status kapacity (barevné odlišení)
     let capacityStatus = '';
     if (availableCapacity <= 0) {
-        capacityStatus = '<span class="capacity-tag sold-out">Vyprodáno</span>';
-    } else if (availableCapacity < 10) {
-        capacityStatus = `<span class="capacity-tag low-capacity">Posledních ${availableCapacity} míst!</span>`;
+        capacityStatus = '<div class="capacity-tag sold-out">Vyprodáno</div>';
     } else {
-        capacityStatus = `<span class="capacity-tag">Volná místa: ${availableCapacity}</span>`;
+        capacityStatus = `<div class="capacity-tag">Volná místa: ${availableCapacity}</div>`;
     }
 
     container.innerHTML = `
         <div class="performance-details-box">
-            <div style="display: flex; justify-content: space-between; align-items: start;">
+            <div class="performance-header">
                 <h2>${performance.title}</h2>
                 ${capacityStatus}
             </div>
