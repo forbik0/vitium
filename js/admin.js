@@ -11,6 +11,7 @@ const resTableBody = document.getElementById('reservations-table-body');
 const syncStatus = document.getElementById('sync-status');
 const modal = document.getElementById('event-modal');
 const eventForm = document.getElementById('event-form');
+const closeModalBtn = document.querySelector('.close-modal');
 
 document.addEventListener('DOMContentLoaded', async () => {
     await fetchEvents();
