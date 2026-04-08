@@ -4,6 +4,14 @@ const API_ADMIN_URL = 'https://api-admin.vitium.art';
 let allReservations = []; // Zde budou uloženy všechny rezervace z API
 let eventsData = [];      // Zde budou představení
 
+const btnAddEvent = document.getElementById('btn-add-event');
+const btnSyncEvents = document.getElementById('btn-sync-events');
+const eventsTableBody = document.getElementById('events-table-body');
+const resTableBody = document.getElementById('reservations-table-body');
+const syncStatus = document.getElementById('sync-status');
+const modal = document.getElementById('event-modal');
+const eventForm = document.getElementById('event-form');
+
 document.addEventListener('DOMContentLoaded', async () => {
     await fetchEvents();
     await fetchAllReservations(); // Načteme je hned do paměti pro rychlé filtrování
