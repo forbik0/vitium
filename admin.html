@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vitium | Administrace</title>
+    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css"> </head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-logo">
+                <div class="navbar-logo-ds">DS</div>
+                <div class="logo-text">VITIUM</div>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><span class="nav-link" style="color: var(--color-primary); font-weight: bold;">Administrace</span></li>
+                <li class="nav-item"><a href="index.html" class="nav-link nav-link-cta">Zpět na web</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section about" style="padding-top: var(--spacing-xl); min-height: 80vh;">
+        <div class="container">
+            <h2 class="section-title">Správa představení a rezervací</h2>
+            
+            <div class="admin-actions" style="margin-bottom: 20px;">
+                <button id="btn-add-event" class="ticket-btn" style="border: none; cursor: pointer;">+ Nové představení</button>
+                <button id="btn-sync-events" class="submit-btn" style="width: auto; margin-left: 10px;">Uložit změny v představeních</button>
+            </div>
+            <div id="sync-status" style="margin-bottom: 20px;"></div>
+
+            <div class="table-responsive">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Datum a čas</th>
+                            <th>Název představení</th>
+                            <th>Místo</th>
+                            <th>Kapacita</th>
+                            <th>Cena</th>
+                            <th>Akce</th>
+                        </tr>
+                    </thead>
+                    <tbody id="events-table-body">
+                        </tbody>
+                </table>
+            </div>
+
+            <hr style="margin: 40px 0; border: 0; border-top: 1px solid #ddd;">
+
+            <div id="reservations-section" style="display: none; animation: fadeInUp 0.4s ease-out;">
+                <h3 id="res-detail-title" style="color: var(--color-primary); margin-bottom: 20px;">Rezervace pro: ---</h3>
+                
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Jméno</th>
+                                <th>Email</th>
+                                <th>Počet lístků</th>
+                                <th>Poznámka</th>
+                                <th>Datum vytvoření</th>
+                                <th>Akce</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reservations-table-body">
+                            </tbody>
+                    </table>
+                </div>
+                <div id="res-summary" style="margin-top: 15px; font-weight: bold; text-align: right;"></div>
+            </div>
+        </div>
+    </section>
+
+    <div id="event-modal" class="modal">
+        <div class="modal-content contact-form">
+            <span class="close-modal">&times;</span>
+            <h3 id="modal-title" style="color: var(--color-primary);">Přidat představení</h3>
+            <form id="event-form">
+                <input type="hidden" id="event-id">
+                
+                <label>Název představení *</label>
+                <input type="text" id="event-title" required>
+                
+                <label>Žánr (např. Komedie, Improvizace) *</label>
+                <input type="text" id="event-genre" required>
+                
+                <label>Místo (např. Divadlo Spektrum) *</label>
+                <input type="text" id="event-venue" required>
+                
+                <div style="display: flex; gap: 10px;">
+                    <div style="flex: 1;">
+                        <label>Datum *</label>
+                        <input type="date" id="event-date" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label>Čas *</label>
+                        <input type="time" id="event-time" required>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <div style="flex: 1;">
+                        <label>Cena (Kč) *</label>
+                        <input type="number" id="event-price" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label>Kapacita</label>
+                        <input type="number" id="event-capacity" required>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <div style="flex: 1;">
+                        <label>Typ vstupenek *</label>
+                        <select id="event-ticket-link" style="width: 100%; padding: var(--spacing-md); border: none; border-radius: 4px; background-color: rgba(255, 255, 255, 0.9); margin-bottom: var(--spacing-md); font-family: var(--font-secondary);">
+                            <option value="own">Vlastní systém (form na webu)</option>
+                            <option value="">Skýt (vyprodáno/nelze)</option>
+                            <option value="custom">Vlastní hodnota (např. GoOut link)</option>
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label>Odkaz *</label>
+                        <input type="text" id="event-ticket-custom-val" placeholder="Vložte URL nebo text" disabled>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn">Uložit do tabulky</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="js/admin.js?v=0.5.1"></script>
+</body>
+</html>

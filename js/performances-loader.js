@@ -28,7 +28,7 @@ async function loadAndRenderPerformances() {
 
             var ticketHtml = "";
             // Kontrola kapacity a odkazu na vstupenky
-            if (perf.ticket_link !== null && perf.remaining_count > 0) {
+            if (perf.ticket_link && perf.remaining_count > 0) {
                 var ticketLink = perf.ticket_link === 'own' ? `tickets.html?id=${perf.id}` : perf.ticket_link;
                 ticketHtml = `
                     <div class="performance-action">
