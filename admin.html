@@ -39,6 +39,7 @@
                             <th>Datum a čas</th>
                             <th>Název představení</th>
                             <th>Místo</th>
+                            <th>Kapacita</th>
                             <th>Cena</th>
                             <th>Akce</th>
                         </tr>
@@ -110,8 +111,10 @@
                         <label>Typ vstupenek *</label>
                         <select id="event-ticket-link" style="width: 100%; padding: var(--spacing-md); border: none; border-radius: 4px; background-color: rgba(255, 255, 255, 0.9); margin-bottom: var(--spacing-md); font-family: var(--font-secondary);">
                             <option value="own">Vlastní systém (form na webu)</option>
-                            <option value="">Neviditelné (vyprodáno/nelze)</option>
+                            <option value="">Skýt (vyprodáno/nelze)</option>
+                            <option value="custom">Vlastní hodnota (např. GoOut link)</option>
                             </select>
+                            <input type="text" id="event-ticket-custom-val" placeholder="Vložte URL nebo text" style="display:none; margin-top: 5px;">
                     </div>
                 </div>
                 
@@ -120,6 +123,6 @@
         </div>
     </div>
     
-    <script src="js/admin.js?v=0.3"></script>
+    <script src="js/admin.js?v=0.4"></script>
 </body>
 </html>

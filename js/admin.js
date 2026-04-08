@@ -12,11 +12,17 @@ const syncStatus = document.getElementById('sync-status');
 const modal = document.getElementById('event-modal');
 const eventForm = document.getElementById('event-form');
 const closeModalBtn = document.querySelector('.close-modal');
+const ticketSelect = document.getElementById('event-ticket-link');
+const customTicketInput = document.getElementById('event-ticket-custom-val');
 
 document.addEventListener('DOMContentLoaded', async () => {
     await fetchEvents();
     await fetchAllReservations(); // Načteme je hned do paměti pro rychlé filtrování
 });
+
+ticketSelect.onchange = () => {
+    customTicketInput.style.display = (ticketSelect.value === 'custom') ? 'block' : 'none';
+};
 
 // === DATA FETCHING ===
 
@@ -67,6 +73,7 @@ function renderEvents() {
             <td>${e.date} <strong>${e.time}</strong></td>
             <td><strong>${e.title}</strong><br><small>${e.type}</small></td>
             <td>${e.venue}</td>
+            <td style="text-align:center;">${e.capacity}</td>
             <td>${e.price} Kč</td>
             <td>
                 <button class="btn-small btn-edit" style="background-color: var(--color-primary); color: white;" onclick="showReservationsFor(${e.id}, '${e.title}')">Zobrazit rezervace</button>
@@ -167,6 +174,16 @@ function openModal(mode, eventId = null) {
             document.getElementById('event-time').value = ev.time;
             document.getElementById('event-price').value = ev.price;
             document.getElementById('event-ticket-link').value = ev.ticket_link || '';
+            document.getElementById('event-capacity').value = ev.capacity || 50;
+
+            if (ev.ticket_link === 'own' || ev.ticket_link === '') {
+                ticketSelect.value = ev.ticket_link;
+                customTicketInput.style.display = 'none';
+            } else {
+                ticketSelect.value = 'custom';
+                customTicketInput.value = ev.ticket_link;
+                customTicketInput.style.display = 'block';
+            }
         }
     }
 }
@@ -177,6 +194,7 @@ eventForm.onsubmit = (e) => {
     const idVal = document.getElementById('event-id').value;
     const isNew = idVal === '';
     const newId = isNew ? Date.now() : parseInt(idVal); 
+    const ticketLinkValue = ticketSelect.value === 'custom' ? customTicketInput.value : ticketSelect.value;
     
     const eventObj = {
         id: newId,
@@ -186,7 +204,8 @@ eventForm.onsubmit = (e) => {
         date: document.getElementById('event-date').value,
         time: document.getElementById('event-time').value,
         price: parseFloat(document.getElementById('event-price').value),
-        ticket_link: document.getElementById('event-ticket-link').value,
+        capacity: parseInt(document.getElementById('event-capacity').value),
+        ticket_link: ticketLinkValue,
         isNew: isNew
     };
 
