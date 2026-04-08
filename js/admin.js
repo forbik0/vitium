@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 ticketSelect.onchange = () => {
-    customTicketInput.style.display = (ticketSelect.value === 'custom') ? 'block' : 'none';
+    customTicketInput.disabled = (ticketSelect.value !== 'custom');
 };
 
 // === DATA FETCHING ===
