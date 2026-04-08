@@ -179,11 +179,11 @@ function openModal(mode, eventId = null) {
 
             if (ev.ticket_link === 'own' || ev.ticket_link === '') {
                 ticketSelect.value = ev.ticket_link;
-                customTicketInput.style.display = 'none';
+                customTicketInput.disabled = true;
             } else {
                 ticketSelect.value = 'custom';
                 customTicketInput.value = ev.ticket_link;
-                customTicketInput.style.display = 'block';
+                customTicketInput.disabled = false;
             }
         }
     }
