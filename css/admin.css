@@ -133,3 +133,7 @@
 .close-modal:hover {
     color: #e74c3c;
 }
+
+input[disabled] {
+    background: lightgray;
+}

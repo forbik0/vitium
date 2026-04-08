@@ -108,13 +108,22 @@
                         <input type="number" id="event-price" required>
                     </div>
                     <div style="flex: 1;">
+                        <label>Kapacita</label>
+                        <input type="number" id="event-capacity" required>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <div style="flex: 1;">
                         <label>Typ vstupenek *</label>
                         <select id="event-ticket-link" style="width: 100%; padding: var(--spacing-md); border: none; border-radius: 4px; background-color: rgba(255, 255, 255, 0.9); margin-bottom: var(--spacing-md); font-family: var(--font-secondary);">
                             <option value="own">Vlastní systém (form na webu)</option>
                             <option value="">Skýt (vyprodáno/nelze)</option>
                             <option value="custom">Vlastní hodnota (např. GoOut link)</option>
-                            </select>
-                            <input type="text" id="event-ticket-custom-val" placeholder="Vložte URL nebo text" style="display:none; margin-top: 5px;">
+                        </select>
+                    </div>
+                    <div style="flex: 1;">
+                        <label>Odkaz *</label>
+                        <input type="text" id="event-ticket-custom-val" placeholder="Vložte URL nebo text" disabled>
                     </div>
                 </div>
                 
@@ -123,6 +132,6 @@
         </div>
     </div>
     
-    <script src="js/admin.js?v=0.5"></script>
+    <script src="js/admin.js?v=0.5.1"></script>
 </body>
 </html>
