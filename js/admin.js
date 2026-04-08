@@ -41,6 +41,7 @@ async function fetchEvents() {
                 date: datePart,
                 time: timePart ? timePart.substring(0, 5) : '19:00',
                 price: e.price,
+                total_capacity: e.total_capacity,
                 ticket_link: e.ticket_link
             };
         });
@@ -73,7 +74,7 @@ function renderEvents() {
             <td>${e.date} <strong>${e.time}</strong></td>
             <td><strong>${e.title}</strong><br><small>${e.type}</small></td>
             <td>${e.venue}</td>
-            <td style="text-align:center;">${e.capacity}</td>
+            <td style="text-align:center;">${e.total_capacity}</td>
             <td>${e.price} Kč</td>
             <td>
                 <button class="btn-small btn-edit" style="background-color: var(--color-primary); color: white;" onclick="showReservationsFor(${e.id}, '${e.title}')">Zobrazit rezervace</button>
@@ -174,7 +175,7 @@ function openModal(mode, eventId = null) {
             document.getElementById('event-time').value = ev.time;
             document.getElementById('event-price').value = ev.price;
             document.getElementById('event-ticket-link').value = ev.ticket_link || '';
-            document.getElementById('event-capacity').value = ev.capacity || 50;
+            document.getElementById('event-capacity').value = ev.total_capacity || 50;
 
             if (ev.ticket_link === 'own' || ev.ticket_link === '') {
                 ticketSelect.value = ev.ticket_link;
@@ -204,7 +205,7 @@ eventForm.onsubmit = (e) => {
         date: document.getElementById('event-date').value,
         time: document.getElementById('event-time').value,
         price: parseFloat(document.getElementById('event-price').value),
-        capacity: parseInt(document.getElementById('event-capacity').value),
+        total_capacity: parseInt(document.getElementById('event-capacity').value),
         ticket_link: ticketLinkValue,
         isNew: isNew
     };
