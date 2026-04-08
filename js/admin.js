@@ -141,61 +141,6 @@ async function deleteReservation(id, eventId, eventTitle) {
     }
 }
 
-// === PŘEDSTAVENÍ (Přes veřejné API) ===
-async function fetchEvents() {
-    try {
-        // Tady používáme veřejné API, protože seznam lístků nepotřebuje admin práva pro čtení
-        const response = await fetch(`${API_PUBLIC_URL}/events`);
-        if (!response.ok) throw new Error('Nelze načíst představení');
-        const dbEvents = await response.json();
-        
-        eventsData = dbEvents.map(e => {
-            const [datePart, timePart] = e.scheduled_at.split('T');
-            return {
-                id: e.id,
-                title: e.title,
-                type: e.genre,
-                venue: e.venue,
-                date: datePart,
-                time: timePart ? timePart.substring(0, 5) : '19:00',
-                price: e.price,
-                ticket_link: e.ticket_link
-            };
-        });
-        
-        renderEvents();
-    } catch (error) {
-        eventsTableBody.innerHTML = `<tr><td colspan="8" style="color:red; text-align:center;">Chyba: ${error.message}</td></tr>`;
-    }
-}
-
-function renderEvents() {
-    eventsTableBody.innerHTML = '';
-    if (eventsData.length === 0) {
-        eventsTableBody.innerHTML = '<tr><td colspan="8" style="text-align:center;">Žádná představení. Přidejte nové.</td></tr>';
-        return;
-    }
-
-    eventsData.forEach(e => {
-        const tr = document.createElement('tr');
-        if(e.isNew) tr.style.backgroundColor = 'rgba(238, 184, 78, 0.1)'; 
-
-        tr.innerHTML = `
-            <td>${e.id}</td>
-            <td><strong>${e.title}</strong></td>
-            <td>${e.type}</td>
-            <td>${e.venue}</td>
-            <td>${e.date} ${e.time}</td>
-            <td>${e.price} Kč</td>
-            <td>${e.ticket_link === 'own' ? 'Vlastní form' : (e.ticket_link || 'Skryto')}</td>
-            <td>
-                <button class="btn-small btn-edit" onclick="openModal('edit', ${e.id})">Upravit</button>
-                <button class="btn-small btn-delete" onclick="deleteEvent(${e.id})">Smazat</button>
-            </td>
-        `;
-        eventsTableBody.appendChild(tr);
-    });
-}
 
 // === MODÁLNÍ OKNO A LOKÁLNÍ EDITACE ===
 btnAddEvent.onclick = () => openModal('add');
