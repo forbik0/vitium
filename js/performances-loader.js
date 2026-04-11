@@ -2,7 +2,7 @@
 
 async function loadAndRenderPerformances() {
     try {
-        const response = await fetch('https://api.vitium.art/events');
+        const response = await fetch(`${CONFIG.API_PUBLIC_URL}/events`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

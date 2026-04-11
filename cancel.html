@@ -50,7 +50,7 @@
             <a href="index.html">← Zpět na hlavní stránku</a>
         </div>
     </div>
-
+    <script src="js/config.js?ver=1.0.0"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
@@ -70,7 +70,7 @@
                 btn.textContent = "Ruším...";
 
                 try {
-                    const response = await fetch(`https://api.vitium.art/cancel/${hash}`, {
+                    const response = await fetch(`${CONFIG.API_PUBLIC_URL}/cancel/${hash}`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' }
                     });

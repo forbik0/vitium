@@ -19,7 +19,7 @@ contactForm.addEventListener('submit', async (e) => {
   };
 
   try {
-    const workerUrl = 'https://post-api.vitium.art';
+    const workerUrl = CONFIG.API_MAIL_URL; // 'https://post-api.vitium.art';
 
     const response = await fetch(workerUrl, {
       method: 'POST',
