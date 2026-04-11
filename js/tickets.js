@@ -6,7 +6,7 @@ let performances = {};
 async function loadPerformances() {
     try {
         // Načtení dat z API
-        const response = await fetch('https://api.vitium.art/events');
+        const response = await fetch(`${CONFIG.API_PUBLIC_URL}/events`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -194,7 +194,7 @@ async function handleFormSubmit(e) {
     statusElement.style.display = 'block';
 
     try {
-        const response = await fetch('https://api.vitium.art/reserve', {
+        const response = await fetch(`${CONFIG.API_PUBLIC_URL}/reserve`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(reservationData)
