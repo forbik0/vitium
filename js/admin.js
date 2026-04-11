@@ -1,5 +1,5 @@
-const API_PUBLIC_URL = 'https://api.vitium.art';
-const API_ADMIN_URL = 'https://api-admin.vitium.art';
+// const API_PUBLIC_URL = 'https://api.vitium.art';
+// const API_ADMIN_URL = 'https://api-admin.vitium.art';
 
 let allReservations = []; // Zde budou uloženy všechny rezervace z API
 let eventsData = [];      // Zde budou představení
@@ -28,7 +28,7 @@ ticketSelect.onchange = () => {
 
 async function fetchEvents() {
     try {
-        const response = await fetch(`${API_PUBLIC_URL}/events`);
+        const response = await fetch(`${CONFIG.API_PUBLIC_URL}/events`);
         const dbEvents = await response.json();
         
         eventsData = dbEvents.map(e => {
@@ -53,7 +53,7 @@ async function fetchEvents() {
 
 async function fetchAllReservations() {
     try {
-        const response = await fetch(`${API_ADMIN_URL}/reservations`, { credentials: 'include' });
+        const response = await fetch(`${CONFIG.API_ADMIN_URL}/reservations`, { credentials: 'include' });
         if (response.ok) {
             allReservations = await response.json();
         }
@@ -132,7 +132,7 @@ async function deleteReservation(id, eventId, eventTitle) {
     if (!confirm('Opravdu chcete smazat tuto rezervaci?')) return;
 
     try {
-        const response = await fetch(`${API_ADMIN_URL}/delete-reservation`, {
+        const response = await fetch(`${CONFIG.API_ADMIN_URL}/delete-reservation`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id }),
@@ -236,7 +236,7 @@ btnSyncEvents.onclick = async () => {
     syncStatus.innerHTML = '';
 
     try {
-        const response = await fetch(`${API_ADMIN_URL}/sync-events`, {
+        const response = await fetch(`${CONFIG.API_ADMIN_URL}/sync-events`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(eventsData),
