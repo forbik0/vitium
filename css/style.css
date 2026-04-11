@@ -4,40 +4,47 @@
    ============================================ */
 
 @font-face {
-  font-family: 'Playfair Display';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap; 
-  src: url('../fonts/playfair-display-regular.woff2') format('woff2');
+    font-family: 'Playfair Display';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/playfair-display-regular.woff2') format('woff2');
 }
+
 @font-face {
-  font-family: 'Playfair Display';
-  font-style: bold;
-  font-weight: 700;
-  font-display: swap; 
-  src: url('../fonts/playfair-display-700.woff2') format('woff2');
+    font-family: 'Playfair Display';
+    font-style: bold;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../fonts/playfair-display-700.woff2') format('woff2');
 }
+
 /* Color Variables */
 :root {
-    --color-primary: #124551;        /* Petrolejová */
-    --color-secondary: #eeb84e;     /* Zlatá */
-    --color-dark: #0d2c31;          /* Tmavá petrolejová */
-    --color-light: #f5f5f5;         /* Světlá */
+    --color-primary: #124551;
+    /* Petrolejová */
+    --color-secondary: #eeb84e;
+    /* Zlatá */
+    --color-dark: #0d2c31;
+    /* Tmavá petrolejová */
+    --color-light: #f5f5f5;
+    /* Světlá */
     --color-white: #ffffff;
     --color-text: #2c3e50;
     --color-text-light: #7f8c8d;
-    --color-accent: #f0c863;        /* Teplá zlatá (harmonizovaná) */
-    
+    --color-accent: #f0c863;
+    /* Teplá zlatá (harmonizovaná) */
+
     --font-primary: 'Playfair Display', 'Georgia', serif;
     --font-secondary: 'Arial', 'Helvetica', sans-serif;
-    
+
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
     --spacing-2xl: 4rem;
-    
+
     --transition-fast: 0.2s ease-in-out;
     --transition-normal: 0.3s ease-in-out;
     --transition-slow: 0.5s ease-in-out;
@@ -80,18 +87,40 @@ body {
    TYPOGRAPHY
    ============================================ */
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-primary);
     color: var(--color-primary);
     line-height: 1.2;
 }
 
-h1 { font-size: 3.5rem; }
-h2 { font-size: 2.5rem; }
-h3 { font-size: 1.75rem; }
-h4 { font-size: 1.5rem; }
-h5 { font-size: 1.25rem; }
-h6 { font-size: 1rem; }
+h1 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 1.75rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
+h5 {
+    font-size: 1.25rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
 
 p {
     margin-bottom: var(--spacing-md);
@@ -151,7 +180,8 @@ a:hover {
 .navbar-logo-ds {
     background: var(--color-primary) url('../images/web_logo_i.svg') no-repeat center center;
     background-size: 20px;
-    color: transparent;/* var(--color-secondary);*/
+    color: transparent;
+    /* var(--color-secondary);*/
     padding: 5px;
     min-width: 32px;
     text-align: center;
@@ -293,7 +323,7 @@ a:hover {
     letter-spacing: 8px;
     margin-bottom: var(--spacing-md);
     color: transparent;
-    
+
     background: url('../images/web_logo_main.svg') no-repeat center center;
     background-size: 32rem;
 
@@ -609,12 +639,14 @@ a:hover {
 
 .carousel-track {
     display: flex;
-    width: calc(320px * 26); /* 300px foto + 20px mezera, 26 položek */
+    width: calc(320px * 26);
+    /* 300px foto + 20px mezera, 26 položek */
     animation: scroll var(--animation-duration, 200s) linear infinite;
 }
 
 .carousel-track:hover {
-    animation-play-state: paused; /* Při najetí myší se pás zastaví */
+    animation-play-state: paused;
+    /* Při najetí myší se pás zastaví */
 }
 
 .gallery-item {
@@ -644,8 +676,13 @@ a:hover {
 
 /* Animace nekonečného pohybu */
 @keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 /* ============================================
@@ -935,42 +972,50 @@ a:hover {
 }
 
 .admin-door:hover {
-    color:inherit;
+    color: inherit;
     opacity: 0.8;
+}
 
 /* ============================================
    LEGAL NOTICE
    ============================================ */
 .legal-content {
-            max-width: 800px; /* Užší blok pro lepší čitelnost textu */
-            margin: 0 auto;
-            padding: var(--spacing-2xl) var(--spacing-lg);
-        }
-        .legal-content h2 {
-            margin-top: var(--spacing-xl);
-            margin-bottom: var(--spacing-md);
-            font-size: 1.8rem;
-            border-bottom: 1px solid var(--color-light);
-            padding-bottom: var(--spacing-xs);
-        }
-        .legal-content p, .legal-content ul {
-            margin-bottom: var(--spacing-md);
-            color: var(--color-text);
-            line-height: 1.8;
-        }
-        .legal-content ul {
-            padding-left: var(--spacing-lg);
-        }
-        .legal-hero {
-            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark) 100%);
-            color: var(--color-white);
-            padding: var(--spacing-2xl) 0;
-            text-align: center;
-        }
-        .legal-hero h1 {
-            color: var(--color-secondary);
-            margin-bottom: 0;
-        }
+    max-width: 800px;
+    /* Užší blok pro lepší čitelnost textu */
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+.legal-content h2 {
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.8rem;
+    border-bottom: 1px solid var(--color-light);
+    padding-bottom: var(--spacing-xs);
+}
+
+.legal-content p,
+.legal-content ul {
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+    line-height: 1.8;
+}
+
+.legal-content ul {
+    padding-left: var(--spacing-lg);
+}
+
+.legal-hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-dark) 100%);
+    color: var(--color-white);
+    padding: var(--spacing-2xl) 0;
+    text-align: center;
+}
+
+.legal-hero h1 {
+    color: var(--color-secondary);
+    margin-bottom: 0;
+}
 
 /* ============================================
    ANIMATIONS
@@ -981,6 +1026,7 @@ a:hover {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -992,6 +1038,7 @@ a:hover {
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -1003,6 +1050,7 @@ a:hover {
         opacity: 0;
         transform: translateX(30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
