@@ -2,7 +2,7 @@
 
 async function loadAndRenderPerformances() {
     try {
-        const response = await fetch(`${CONFIG.API_PUBLIC_URL}/events`);
+        const response = await fetch(`${CONFIG.API_PUBLIC}/events`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -10,6 +10,11 @@ async function loadAndRenderPerformances() {
         
         const performancesList = document.getElementById('performances-list');
         if (!performancesList) return;
+
+        if(performances.length === 0) {
+            performancesList.innerHTML = '<p>Momentálně nemáme naplánovaná žádná představení.</p>';
+            return;
+        }
         
         performancesList.innerHTML = performances.map(perf => {
             // Datum chodí z API ve formátu "2026-06-08T19:00"
