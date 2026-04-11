@@ -42,7 +42,8 @@ async function fetchEvents() {
                 time: timePart ? timePart.substring(0, 5) : '19:00',
                 price: e.price,
                 total_capacity: e.total_capacity,
-                ticket_link: e.ticket_link
+                ticket_link: e.ticket_link,
+                remaining_count: e.remaining_count,
             };
         });
         renderEvents();
@@ -74,10 +75,10 @@ function renderEvents() {
             <td>${e.date} <strong>${e.time}</strong></td>
             <td><strong>${e.title}</strong><br><small>${e.type}</small></td>
             <td>${e.venue}</td>
-            <td style="text-align:center;">${e.total_capacity}</td>
+            <td style="text-align:center;">${e.remaining_count} / ${e.total_capacity}</td>
             <td>${e.price} Kč</td>
             <td>
-                <button class="btn-small btn-edit" style="background-color: var(--color-primary); color: white;" onclick="showReservationsFor(${e.id}, '${e.title}')">Zobrazit rezervace</button>
+                <button class="btn-small btn-edit" style="background-color: var(--color-primary); color: white;" onclick="showReservationsFor(${e.id}, '${e.title}', '${e.date}')">Zobrazit rezervace</button>
                 <button class="btn-small btn-edit" onclick="openModal('edit', ${e.id})">Upravit</button>
                 <button class="btn-small btn-delete" onclick="deleteEvent(${e.id})">Smazat</button>
             </td>
@@ -88,7 +89,7 @@ function renderEvents() {
 
 // === FILTROVÁNÍ REZERVACÍ ===
 
-function showReservationsFor(eventId, eventTitle) {
+function showReservationsFor(eventId, eventTitle, eventDate) {
     const section = document.getElementById('reservations-section');
     const tbody = document.getElementById('reservations-table-body');
     const title = document.getElementById('res-detail-title');
@@ -96,9 +97,9 @@ function showReservationsFor(eventId, eventTitle) {
 
     // Filtrujeme lokální data
     const filtered = allReservations.filter(r => r.event_id === eventId);
-    const totalTickets = filtered.reduce((sum, r) => sum + r.count, 0);
+    const totalTickets = filtered.reduce((sum, r) => sum + r.ticket_count, 0);
 
-    title.innerText = `Rezervace pro: ${eventTitle}`;
+    title.innerText = `Rezervace pro: ${eventTitle} (${eventDate})`;
     section.style.display = 'block';
     tbody.innerHTML = '';
 
@@ -110,12 +111,12 @@ function showReservationsFor(eventId, eventTitle) {
             const dateStr = new Date(res.created_at).toLocaleString('cs-CZ');
             const tr = document.createElement('tr');
             tr.innerHTML = `
-                <td><strong>${res.name}</strong></td>
-                <td><a href="mailto:${res.email}">${res.email}</a></td>
-                <td style="text-align:center;">${res.count}</td>
+                <td><strong>${res.customer_name}</strong></td>
+                <td><a href="mailto:${res.customer_email}">${res.customer_email}</a></td>
+                <td style="text-align:center;">${res.ticket_count}</td>
                 <td style="font-size: 0.85rem;">${res.note || '-'}</td>
                 <td>${dateStr}</td>
-                <td><button class="btn-small btn-delete" onclick="deleteReservation(${res.id}, ${eventId}, '${eventTitle}')">Smazat</button></td>
+                <td><button class="btn-small btn-delete" onclick="deleteReservation(${res.id}, ${eventId}, '${eventTitle}', '${eventDate}')">Smazat</button></td>
             `;
             tbody.appendChild(tr);
         });
@@ -128,7 +129,7 @@ function showReservationsFor(eventId, eventTitle) {
 
 // === MAZÁNÍ REZERVACE ===
 
-async function deleteReservation(id, eventId, eventTitle) {
+async function deleteReservation(id, eventId, eventTitle, eventDate) {
     if (!confirm('Opravdu chcete smazat tuto rezervaci?')) return;
 
     try {
@@ -142,7 +143,7 @@ async function deleteReservation(id, eventId, eventTitle) {
         if (response.ok) {
             // Aktualizujeme lokální data a překreslíme
             allReservations = allReservations.filter(r => r.id !== id);
-            showReservationsFor(eventId, eventTitle);
+            showReservationsFor(eventId, eventTitle, eventDate);
         }
     } catch (error) {
         alert("Chyba při mazání: " + error.message);
