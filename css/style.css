@@ -927,6 +927,17 @@ a:hover {
     font-size: 0.9rem;
 }
 
+.admin-door {
+    color: inherit;
+    text-decoration: none;
+    cursor: default;
+    transition: opacity 0.3s;
+}
+
+.admin-door:hover {
+    color:inherit;
+    opacity: 0.8;
+
 /* ============================================
    LEGAL NOTICE
    ============================================ */
@@ -960,6 +971,7 @@ a:hover {
             color: var(--color-secondary);
             margin-bottom: 0;
         }
+
 /* ============================================
    ANIMATIONS
    ============================================ */
