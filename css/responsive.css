@@ -127,18 +127,18 @@
 
     /* Members */
     .members-grid {
-        grid-template-columns: 1fr;
+        /* grid-template-columns: 1fr; */
         gap: var(--spacing-lg);
     }
 
-    .member-image {
+    /* .member-image {
         height: 200px;
-    }
+    } */
 
     /* About */
-    .about-stats {
+    /* .about-stats {
         grid-template-columns: 1fr;
-    }
+    } */
 
     .stat-item {
         padding: var(--spacing-lg);
@@ -146,13 +146,13 @@
 
     /* Repertoire */
     .repertoire-grid {
-        grid-template-columns: 1fr;
+        /* grid-template-columns: 1fr; */
         gap: var(--spacing-lg);
     }
 
-    .repertoire-image {
+    /* .repertoire-image {
         height: 250px;
-    }
+    } */
 
     /* Performances */
     .performance-item {
@@ -182,22 +182,18 @@
     }
 
     /* Contact */
-    .contact-content {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-info {
-        grid-template-columns: 1fr;
-    }
-
     .contact-form {
         order: -1;
     }
 
     /* Footer */
     .footer-content {
-        grid-template-columns: 1fr;
+        /* grid-template-columns: 1fr; */
         gap: var(--spacing-lg);
+    }
+
+    .footer-content .social-links {
+        gap: 0.4rem;
     }
 
     .gallery-item {
@@ -286,9 +282,9 @@
         gap: var(--spacing-md);
     }
 
-    .member-image {
+    /* .member-image {
         height: 180px;
-    }
+    } */
 
     .member-name {
         padding: var(--spacing-md) var(--spacing-sm) var(--spacing-xs);
@@ -326,9 +322,9 @@
         gap: var(--spacing-md);
     }
 
-    .repertoire-image {
+    /* .repertoire-image {
         height: 200px;
-    }
+    } */
 
     .repertoire-title {
         padding: var(--spacing-md) var(--spacing-sm) var(--spacing-xs);
@@ -385,6 +381,10 @@
     }
 
     /* Contact */
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
     .contact-form {
         padding: var(--spacing-lg);
     }
@@ -421,6 +421,15 @@
 
     .footer-bottom {
         font-size: 0.85rem;
+    }
+
+        /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content .social-links {
+        gap: var(--spacing-sm);
     }
 }
 
