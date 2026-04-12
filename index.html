@@ -28,7 +28,7 @@
     <link rel="manifest" href="/site.webmanifest">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-    <link rel="stylesheet" href="css/style.css?v=1.0.2">
+    <link rel="stylesheet" href="css/style.css?v=1.0.3">
     <link rel="stylesheet" href="css/responsive.css?v=1.0.0">
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -164,7 +164,7 @@
 
                     <div class="repertoire-card">
                         <div class="repertoire-image">
-                            <img src="images/placeholder-production.svg" alt="Divadelní představení Přijdu hned - soubor Vitium">
+                            <img src="images/prijdu_hned_plakat.png" alt="Divadelní představení Přijdu hned - soubor Vitium">
                             <div class="repertoire-tag">Připravujeme</div>
                         </div>
                         <h3 class="repertoire-title">Přijdu hned</h3>
@@ -187,33 +187,35 @@
       <p>Autentické momenty z jeviště i mimo něj. Protože největší kouzlo se často děje v trhlinách mezi naučeným textem a nečekanou improvizací.</p>
     </div>
     <div class="instagram-carousel">
+        <button class="nav-btn prev-btn" id="btn-prev">&#10094;</button>
+        <button class="nav-btn next-btn" id="btn-next">&#10095;</button>
         <div class="carousel-track" id="gallery-track">
-            <div class="gallery-item"><img src="gallery/foto1.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto2.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto3.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto4.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto5.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto6.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto7.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto8.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto9.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto10.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto11.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto12.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto13.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto14.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto15.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto16.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto17.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto18.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto19.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto20.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto21.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto22.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto23.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto24.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto25.jpeg" alt="Vitium moment" /></div>
-            <div class="gallery-item"><img src="gallery/foto26.jpeg" alt="Vitium moment" /></div>
+            <a class="gallery-item" href="gallery/foto1.jpeg" target="_blank"><img src="gallery/foto1.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto2.jpeg" target="_blank"><img src="gallery/foto2.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto3.jpeg" target="_blank"><img src="gallery/foto3.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto4.jpeg" target="_blank"><img src="gallery/foto4.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto5.jpeg" target="_blank"><img src="gallery/foto5.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto6.jpeg" target="_blank"><img src="gallery/foto6.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto7.jpeg" target="_blank"><img src="gallery/foto7.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto8.jpeg" target="_blank"><img src="gallery/foto8.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto9.jpeg" target="_blank"><img src="gallery/foto9.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto10.jpeg" target="_blank"><img src="gallery/foto10.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto11.jpeg" target="_blank"><img src="gallery/foto11.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto12.jpeg" target="_blank"><img src="gallery/foto12.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto13.jpeg" target="_blank"><img src="gallery/foto13.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto14.jpeg" target="_blank"><img src="gallery/foto14.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto15.jpeg" target="_blank"><img src="gallery/foto15.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto16.jpeg" target="_blank"><img src="gallery/foto16.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto17.jpeg" target="_blank"><img src="gallery/foto17.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto18.jpeg" target="_blank"><img src="gallery/foto18.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto19.jpeg" target="_blank"><img src="gallery/foto19.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto20.jpeg" target="_blank"><img src="gallery/foto20.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto21.jpeg" target="_blank"><img src="gallery/foto21.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto22.jpeg" target="_blank"><img src="gallery/foto22.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto23.jpeg" target="_blank"><img src="gallery/foto23.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto24.jpeg" target="_blank"><img src="gallery/foto24.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto25.jpeg" target="_blank"><img src="gallery/foto25.jpeg" alt="Vitium moment" /></a>
+            <a class="gallery-item" href="gallery/foto26.jpeg" target="_blank"><img src="gallery/foto26.jpeg" alt="Vitium moment" /></a>
             
         </div>
     </div>
@@ -408,6 +410,6 @@
     <script src="js/main.js?ver=1.0.0"></script>
     <script src="js/performances-loader.js?ver=1.3.1"></script>
     <script src="js/send_form.js?ver=1.2.0"></script>
-    <script src="js/gallery.js?ver=1.0.0"></script>
+    <script src="js/gallery.js?ver=1.1.0"></script>
 </body>
 </html>
