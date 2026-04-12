@@ -25,7 +25,7 @@
     <link rel="manifest" href="/site.webmanifest">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-    <link rel="stylesheet" href="css/style.css?v=1.0.3">
+    <link rel="stylesheet" href="css/style.css?v=1.0.4">
     <link rel="stylesheet" href="css/responsive.css?v=1.0.0">
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -84,9 +84,19 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1 class="hero-title">VITIUM - <span class="hero-title-highlight">divadlení soubor</span></h1>
+            <h1 class="hero-title">VITIUM<span class="hero-title-highlight"> - amatérské divadlo Praha</span></h1>
             <p class="hero-subtitle">Divadelní soubor</p>
-            <p class="hero-tagline">Protože teprve v trhlinách naší dokonalosti prosvítá skutečný člověk.</p>
+            <p class="hero-tagline">
+                <script>
+                // Dynamická změna tagline
+                const taglines = [
+                    "Protože teprve v trhlinách naší dokonalosti prosvítá skutečný člověk.",
+                    "Protože největší kouzlo se často děje v trhlinách mezi naučeným textem a nečekanou improvizací."
+                ];
+                const randomIndex = Math.floor(Math.random() * taglines.length);
+                document.querySelector('.hero-tagline').textContent = taglines[randomIndex];
+                </script>
+            </p>
             <a href="#o-nas" class="cta-button">Více o nás</a>
         </div>
         <div class="hero-background">
@@ -102,7 +112,7 @@
             <div class="about-content">
                 <div class="about-text">
                     <p>
-                        Vitium je moderní divadelní soubor, ve kterém se potkává dravá energie začátečníků 
+                        Vitium je amatérský divadelní soubor, ve kterém se potkává dravá energie začátečníků 
                         se zkušenostmi ostřílených matadorů amatérské scény.
                     </p>
                     <p>
@@ -110,7 +120,7 @@
                         a právě tyto nedokonalosti v každém z nás jsou oknem do autentičnosti a lidskosti.
                     </p>
                     <p>
-                        Naší základnou je Praha, ale naše dveře jsou otevřené všem. Nejsme uzavřený kolektiv
+                        Naší základnou je Praha a naše dveře jsou otevřené všem. Nejsme uzavřený kolektiv
                         a rádi navážeme spolupráci s každým, kdo se chce stát součástí naší divadelní cesty.
                     </p>
                 </div>
@@ -207,38 +217,38 @@
         <h2 class="section-title">Galerie</h2>
     </div>
     <div class="repertoire-intro">
-      <p>Autentické momenty z jeviště i mimo něj. Protože největší kouzlo se často děje v trhlinách mezi naučeným textem a nečekanou improvizací.</p>
+      <p>Autentické momenty z jeviště i mimo něj. Nahlédněte do míst, která často zůstávají skrytá, a přesto tvoří nedílnou součást celého příběhu.</p>
     </div>
     <div class="instagram-carousel">
         <button class="nav-btn prev-btn" id="btn-prev">&#10094;</button>
         <button class="nav-btn next-btn" id="btn-next">&#10095;</button>
         <div class="carousel-track" id="gallery-track">
-            <a class="gallery-item" href="gallery/foto1.jpeg" target="_blank"><img src="gallery/foto1.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto2.jpeg" target="_blank"><img src="gallery/foto2.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto3.jpeg" target="_blank"><img src="gallery/foto3.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto4.jpeg" target="_blank"><img src="gallery/foto4.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto5.jpeg" target="_blank"><img src="gallery/foto5.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto6.jpeg" target="_blank"><img src="gallery/foto6.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto7.jpeg" target="_blank"><img src="gallery/foto7.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto8.jpeg" target="_blank"><img src="gallery/foto8.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto9.jpeg" target="_blank"><img src="gallery/foto9.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto10.jpeg" target="_blank"><img src="gallery/foto10.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto11.jpeg" target="_blank"><img src="gallery/foto11.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto12.jpeg" target="_blank"><img src="gallery/foto12.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto13.jpeg" target="_blank"><img src="gallery/foto13.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto14.jpeg" target="_blank"><img src="gallery/foto14.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto15.jpeg" target="_blank"><img src="gallery/foto15.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto16.jpeg" target="_blank"><img src="gallery/foto16.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto17.jpeg" target="_blank"><img src="gallery/foto17.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto18.jpeg" target="_blank"><img src="gallery/foto18.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto19.jpeg" target="_blank"><img src="gallery/foto19.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto20.jpeg" target="_blank"><img src="gallery/foto20.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto21.jpeg" target="_blank"><img src="gallery/foto21.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto22.jpeg" target="_blank"><img src="gallery/foto22.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto23.jpeg" target="_blank"><img src="gallery/foto23.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto24.jpeg" target="_blank"><img src="gallery/foto24.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto25.jpeg" target="_blank"><img src="gallery/foto25.jpeg" alt="Vitium moment" loading="lazy" /></a>
-            <a class="gallery-item" href="gallery/foto26.jpeg" target="_blank"><img src="gallery/foto26.jpeg" alt="Vitium moment" loading="lazy" /></a>   
+            <a class="gallery-item" href="gallery/foto1.jpeg" target="_blank"><img src="gallery/foto1.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto2.jpeg" target="_blank"><img src="gallery/foto2.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto3.jpeg" target="_blank"><img src="gallery/foto3.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto4.jpeg" target="_blank"><img src="gallery/foto4.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto5.jpeg" target="_blank"><img src="gallery/foto5.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto6.jpeg" target="_blank"><img src="gallery/foto6.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto7.jpeg" target="_blank"><img src="gallery/foto7.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto8.jpeg" target="_blank"><img src="gallery/foto8.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto9.jpeg" target="_blank"><img src="gallery/foto9.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto10.jpeg" target="_blank"><img src="gallery/foto10.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto11.jpeg" target="_blank"><img src="gallery/foto11.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto12.jpeg" target="_blank"><img src="gallery/foto12.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto13.jpeg" target="_blank"><img src="gallery/foto13.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto14.jpeg" target="_blank"><img src="gallery/foto14.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto15.jpeg" target="_blank"><img src="gallery/foto15.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto16.jpeg" target="_blank"><img src="gallery/foto16.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto17.jpeg" target="_blank"><img src="gallery/foto17.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto18.jpeg" target="_blank"><img src="gallery/foto18.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto19.jpeg" target="_blank"><img src="gallery/foto19.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto20.jpeg" target="_blank"><img src="gallery/foto20.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto21.jpeg" target="_blank"><img src="gallery/foto21.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto22.jpeg" target="_blank"><img src="gallery/foto22.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto23.jpeg" target="_blank"><img src="gallery/foto23.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto24.jpeg" target="_blank"><img src="gallery/foto24.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto25.jpeg" target="_blank"><img src="gallery/foto25.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/foto26.jpeg" target="_blank"><img src="gallery/foto26.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>   
         </div>
     </div>
 </section>
@@ -250,7 +260,7 @@
             <div class="members-grid">
                 <div class="member-card">
                     <div class="member-image">
-                        <img src="images/placeholder-portrait.svg" alt="Portrét člena divadelního souboru Vitium - Martin Fornbaum">
+                        <img src="images/placeholder-portrait.svg" alt="Portrét herce amatérského divadelního souboru Vitium Praha - Martin Fornbaum">
                     </div>
                     <h3 class="member-name">Martin Fornbaum</h3>
                     <p class="member-role">Scénář, režie, herecký soubor</p>
@@ -259,7 +269,7 @@
 
                 <div class="member-card">
                     <div class="member-image">
-                        <img src="images/placeholder-portrait.svg" alt="Portrét člena divadelního souboru Vitium - Petr Setvín">
+                        <img src="images/placeholder-portrait.svg" alt="Portrét herce amatérského divadelního souboru Vitium Praha - Petr Setvín">
                     </div>
                     <h3 class="member-name">Petr Setvín</h3>
                     <p class="member-role">Režie, vizuální koncepce</p>
@@ -268,7 +278,7 @@
 
                 <div class="member-card">
                     <div class="member-image">
-                        <img src="images/placeholder-portrait.svg" alt="Portrét člena divadelního souboru Vitium - Anežka Vestfálová">
+                        <img src="images/placeholder-portrait.svg" alt="Portrét herce amatérského divadelního souboru Vitium Praha - Anežka Vestfálová">
                     </div>
                     <h3 class="member-name">Anežka Vestfálová</h3>
                     <p class="member-role">Herecký soubor</p>
@@ -277,7 +287,7 @@
 
                 <div class="member-card">
                     <div class="member-image">
-                        <img src="images/placeholder-portrait.svg" alt="Portrét člena divadelního souboru Vitium - Jiří Pondělíček">
+                        <img src="images/placeholder-portrait.svg" alt="Portrét herce amatérského divadelního souboru Vitium Praha - Jiří Pondělíček">
                     </div>
                     <h3 class="member-name">Jiří Pondělíček</h3>
                     <p class="member-role">Herecký soubor</p>
@@ -286,7 +296,7 @@
 
                 <div class="member-card">
                     <div class="member-image">
-                        <img src="images/placeholder-portrait.svg" alt="Portrét člena divadelního souboru Vitium - Jakub Cepl">
+                        <img src="images/placeholder-portrait.svg" alt="Portrét herce amatérského divadelního souboru Vitium Praha - Jakub Cepl">
                     </div>
                     <h3 class="member-name">Jakub Cepl</h3>
                     <p class="member-role">Herecký soubor</p>
@@ -295,7 +305,7 @@
 
                 <div class="member-card">
                     <div class="member-image">
-                        <img src="images/placeholder-portrait.svg" alt="Portrét člena divadelního souboru Vitium - Klára Fardová">
+                        <img src="images/placeholder-portrait.svg" alt="Portrét herce amatérského divadelního souboru Vitium Praha - Klára Fardová">
                     </div>
                     <h3 class="member-name">Klára Fardová</h3>
                     <p class="member-role">Herecký soubor</p>
@@ -303,7 +313,7 @@
                 </div>
                 <div class="member-card">
                     <div class="member-image">
-                        <img src="images/placeholder-portrait.svg" alt="Portrét člena divadelního souboru Vitium - Patrik Chrz">
+                        <img src="images/placeholder-portrait.svg" alt="Portrét herce amatérského divadelního souboru Vitium Praha - Patrik Chrz">
                     </div>
                     <h3 class="member-name">Patrik Chrz</h3>
                     <p class="member-role">Herecký soubor</p>
@@ -311,7 +321,7 @@
                 </div>
                 <div class="member-card">
                     <div class="member-image">
-                        <img src="images/placeholder-portrait.svg" alt="Portrét člena divadelního souboru Vitium - Samuel Jurga">
+                        <img src="images/placeholder-portrait.svg" alt="Portrét herce amatérského divadelního souboru Vitium Praha - Samuel Jurga">
                     </div>
                     <h3 class="member-name">Samuel Jurga</h3>
                     <p class="member-role">Zvuk, herecký soubor</p>
@@ -319,7 +329,7 @@
                 </div>
                 <div class="member-card">
                     <div class="member-image">
-                        <img src="images/placeholder-portrait.svg" alt="Portrét člena divadelního souboru Vitium - Zuzana Dobiášová">
+                        <img src="images/placeholder-portrait.svg" alt="Portrét herce amatérského divadelního souboru Vitium Praha - Zuzana Dobiášová">
                     </div>
                     <h3 class="member-name">Zuzana Dobiášová</h3>
                     <p class="member-role">Herecký soubor</p>
@@ -327,7 +337,7 @@
                 </div>
                 <div class="member-card">
                     <div class="member-image">
-                        <img src="images/placeholder-portrait.svg" alt="Portrét člena divadelního souboru Vitium - Týna Hejzlarová">
+                        <img src="images/placeholder-portrait.svg" alt="Portrét herce amatérského divadelního souboru Vitium Praha - Týna Hejzlarová">
                     </div>
                     <h3 class="member-name">Týna Hejzlarová</h3>
                     <p class="member-role">Herecký soubor</p>
