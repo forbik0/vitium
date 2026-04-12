@@ -13,7 +13,7 @@
 
 @font-face {
     font-family: 'Playfair Display';
-    font-style: bold;
+    font-style: normal;
     font-weight: 700;
     font-display: swap;
     src: url('../fonts/playfair-display-700.woff2') format('woff2');
@@ -75,6 +75,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     margin: 0;
+    min-width: 300px;
 }
 
 .container {
@@ -419,6 +420,10 @@ a:hover {
     line-height: 1.8;
 }
 
+.about-text p:last-of-type {
+    margin-bottom: 0;
+}
+
 .about-stats {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -635,18 +640,49 @@ a:hover {
     box-shadow: inset 0 -2px 8px rgba(18, 69, 81, 0.05);
     -webkit-mask-image: linear-gradient(to right, transparent -10%, black 10%, black 90%, transparent 110%);
     mask-image: linear-gradient(to right, transparent -10%, black 10%, black 90%, transparent 110%);
+    position: relative;
+    overflow: hidden;
 }
 
 .carousel-track {
     display: flex;
-    width: calc(320px * 26);
-    /* 300px foto + 20px mezera, 26 položek */
-    animation: scroll var(--animation-duration, 200s) linear infinite;
+    width: max-content; 
+    
 }
 
 .carousel-track:hover {
     animation-play-state: paused;
     /* Při najetí myší se pás zastaví */
+}
+
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: 20px 15px;
+    font-size: 24px;
+    cursor: pointer;
+    backdrop-filter: blur(4px); 
+    transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.prev-btn {
+    left: 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.next-btn {
+    right: 0;
+    border-radius: 8px 0 0 8px;
 }
 
 .gallery-item {
@@ -672,17 +708,6 @@ a:hover {
     filter: grayscale(0%) brightness(1.1);
     box-shadow: 0 8px 20px rgba(18, 69, 81, 0.35);
     cursor: pointer;
-}
-
-/* Animace nekonečného pohybu */
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
 }
 
 /* ============================================
