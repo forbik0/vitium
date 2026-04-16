@@ -31,6 +31,10 @@ contactForm.addEventListener('submit', async (e) => {
       statusMessage.textContent = "Zpráva byla úspěšně odeslána!";
       statusMessage.style.color = "green";
       contactForm.reset();
+      
+      if (window.turnstile) {
+        turnstile.reset();
+      }
     } else {
       throw new Error("Chyba při odesílání.");
     }
