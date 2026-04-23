@@ -55,6 +55,10 @@
     font-weight: bold;
 }
 
+.price-highlight.free{
+    font-size: 18px;
+}
+
 .reservation-form-box {
     background: var(--color-white);
     border-radius: 8px;
