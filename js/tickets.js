@@ -86,6 +86,9 @@ function renderTicketsForm() {
         capacityStatus = `<div class="capacity-tag">Volná místa: ${availableCapacity}</div>`;
     }
 
+    let priceDisplay = performance.price === 0 ? 'DOBROVOLNÉ VSTUPNÉ' : `${performance.price} Kč`;
+    let priceClass = performance.price === 0 ? 'price-highlight free' : 'price-highlight';
+
     container.innerHTML = `
         <div class="performance-details-box">
             <div class="performance-header">
@@ -105,7 +108,7 @@ function renderTicketsForm() {
                 <div class="detail-value">${performance.genre}</div> </div>
             <div class="detail-item">
                 <div class="detail-label">Cena za vstupenku</div>
-                <div class="price-highlight">${performance.price} Kč</div>
+                <div class="${priceClass}">${priceDisplay}</div>
             </div>
         </div>
 
