@@ -3,6 +3,9 @@
 
 let allReservations = []; // Zde budou uloženy všechny rezervace z API
 let eventsData = [];      // Zde budou představení
+let lastEventId = null;   // Zapamatovat si poslední zobrazenou akci
+let lastEventTitle = null;
+let lastEventDate = null;
 
 const btnAddEvent = document.getElementById('btn-add-event');
 const btnSyncEvents = document.getElementById('btn-sync-events');
@@ -18,6 +21,30 @@ const customTicketInput = document.getElementById('event-ticket-custom-val');
 document.addEventListener('DOMContentLoaded', async () => {
     await fetchEvents();
     await fetchAllReservations(); // Načteme je hned do paměti pro rychlé filtrování
+    
+    // Refresh button pro rezervace
+    const btnRefresh = document.getElementById('btn-refresh-reservations');
+    if (btnRefresh) {
+        btnRefresh.addEventListener('click', async () => {
+            btnRefresh.disabled = true;
+            btnRefresh.innerText = 'Obnova...';
+            await fetchAllReservations();
+            // Znovu zobrazit rezervace pro poslední vybranou akci
+            if (lastEventId) {
+                showReservationsFor(lastEventId, lastEventTitle, lastEventDate);
+            }
+            btnRefresh.disabled = false;
+            btnRefresh.innerText = 'Obnovit';
+        });
+    }
+    
+    // Print button pro rezervace
+    const btnPrint = document.getElementById('btn-print-reservations');
+    if (btnPrint) {
+        btnPrint.addEventListener('click', () => {
+            printReservations();
+        });
+    }
 });
 
 ticketSelect.onchange = () => {
@@ -54,12 +81,41 @@ async function fetchEvents() {
 
 async function fetchAllReservations() {
     try {
+        console.log('Načítám rezervace z API...');
         const response = await fetch(`${CONFIG.API_ADMIN_URL}/reservations`, { credentials: 'include' });
-        if (response.ok) {
-            allReservations = await response.json();
+        
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
+        
+        const data = await response.json();
+        
+        if (!Array.isArray(data)) {
+            throw new Error('API nevrátilo pole rezervací');
+        }
+        
+        allReservations = data;
+        
+        // Aktualizovat status
+        // const status = syncStatus;
+        // if (status) {
+        //     if (allReservations.length === 0) {
+        //         status.innerHTML = '<span style="color: #666;">Žádné rezervace v systému.</span>';
+        //     } else {
+        //         status.innerHTML = `<span style="color: #27ae60;">✓ Rezervace načteny (${allReservations.length})</span>`;
+        //         setTimeout(() => { status.innerHTML = ''; }, 3000);
+        //     }
+        // }
+        
     } catch (error) {
-        console.error("Nelze načíst rezervace:", error);
+        console.error("Chyba při načítání rezervací:", error);
+        allReservations = [];
+        
+        // Zobrazit chybu uživateli
+        const status = syncStatus;
+        if (status) {
+            status.innerHTML = `<span style="color: #e74c3c;">Chyba: ${error.message}</span>`;
+        }
     }
 }
 
@@ -94,6 +150,11 @@ function showReservationsFor(eventId, eventTitle, eventDate) {
     const tbody = document.getElementById('reservations-table-body');
     const title = document.getElementById('res-detail-title');
     const summary = document.getElementById('res-summary');
+
+    // Zapamatovat si poslední výběr
+    lastEventId = eventId;
+    lastEventTitle = eventTitle;
+    lastEventDate = eventDate;
 
     // Filtrujeme lokální data
     const filtered = allReservations.filter(r => r.event_id === eventId);
@@ -263,3 +324,102 @@ btnSyncEvents.onclick = async () => {
         btnSyncEvents.innerText = 'Uložit změny (Sync na server)';
     }
 };
+
+// === TISK A EXPORT REZERVACÍ ===
+
+function printReservations() {
+    if (!lastEventId) {
+        alert('Nejdříve si vyberte představení!');
+        return;
+    }
+
+    const event = eventsData.find(e => e.id === lastEventId);
+    if (!event) {
+        alert('Představení nenalezeno!');
+        return;
+    }
+
+    const filtered = allReservations.filter(r => r.event_id === lastEventId);
+    const capacity = event.total_capacity || 50;
+    
+    // Vytvořit řádky s rowspan
+    const tableRows = [];
+    let rowNumber = 1;
+    
+    // Zpracovat rezervace s rowspan
+    filtered.forEach(res => {
+        const ticketCount = res.ticket_count;
+        
+        // První řádek rezervace - s rowspan pro jméno, email, poznámka
+        tableRows.push({
+            rowNum: rowNumber,
+            name: res.customer_name,
+            email: res.customer_email,
+            note: res.note || '',
+            rowspan: ticketCount,
+            isFirst: true
+        });
+        
+        // Další řádky stejné rezervace - bez rowspan sloupců
+        for (let i = 1; i < ticketCount; i++) {
+            tableRows.push({
+                rowNum: rowNumber + i,
+                isFirst: false
+            });
+        }
+        
+        rowNumber += ticketCount;
+    });
+    
+    // Doplnit prázdné řádky až na kapacitu
+    while (tableRows.length < capacity) {
+        tableRows.push({
+            rowNum: rowNumber,
+            name: '',
+            email: '',
+            note: '',
+            rowspan: 1,
+            isFirst: true
+        });
+        rowNumber++;
+    }
+
+    // Generování HTML bez posledního sloupce
+    let html = `
+        <table class="print-table">
+            <thead>
+                <tr>
+                    <th class="print-table-col-num">č.</th>
+                    <th class="print-table-col-name">Jméno</th>
+                    <th class="print-table-col-email">Email</th>
+                    <th class="print-table-col-note">Poznámka</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    tableRows.forEach((row) => {
+        html += `<tr>`;
+        html += `<td class="print-table-col-num">${row.rowNum}</td>`;
+        
+        if (row.isFirst) {
+            const rowspanAttr = row.rowspan > 1 ? ` rowspan="${row.rowspan}"` : '';
+            html += `<td class="print-table-col-name"${rowspanAttr}>${row.name}</td>`;
+            html += `<td class="print-table-col-email"${rowspanAttr}>${row.email}</td>`;
+            html += `<td class="print-table-col-note"${rowspanAttr}>${row.note}</td>`;
+        }
+        
+        html += `</tr>`;
+    });
+
+    html += `
+            </tbody>
+        </table>
+    `;
+
+    // Zobrazit v modalu
+    const printContent = document.getElementById('print-content');
+    const printModal = document.getElementById('print-modal');
+    printContent.innerHTML = html;
+    printModal.style.display = 'block';
+}

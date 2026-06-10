@@ -137,3 +137,141 @@
 input[disabled] {
     background: lightgray;
 }
+
+/* Print table styles */
+.print-table {
+    width: 98%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.print-table th, .print-table td {
+    border: 1px solid #333;
+    padding: 4px 3px;
+    text-align: left;
+    font-size: 10px;
+    box-sizing: border-box;
+}
+
+.print-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+.print-table tr:nth-child(odd) {
+    background-color: #fafafa;
+}
+
+/* Print table column styles */
+.print-table th.print-table-col-num,
+.print-table td.print-table-col-num {
+    width: 3% !important;
+    text-align: center !important;
+}
+.print-table th.print-table-col-name,
+.print-table td.print-table-col-name {
+    width: 27% !important;
+}
+.print-table th.print-table-col-email,
+.print-table td.print-table-col-email {
+    width: 35% !important;
+}
+.print-table th.print-table-col-note,
+.print-table td.print-table-col-note {
+    width: 35% !important;
+}
+
+/* Print modal styles */
+#print-modal {
+    display: none;
+}
+
+.modal-content {
+    width: 95%;
+    max-width: 1200px;
+}
+
+#print-toolbar {
+    margin-bottom: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+#print-toolbar .ticket-btn {
+    border: none;
+    cursor: pointer;
+    padding: 10px 30px;
+}
+
+#print-toolbar .ticket-btn.close-btn {
+    background-color: #95a5a6;
+}
+
+#print-content {
+    padding: 20px;
+    background: white;
+    font-family: Arial, sans-serif;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+/* Print styles */
+@media print {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+    .navbar, .section, .container, .admin-actions, #sync-status, .close-modal, #print-toolbar {
+        display: none !important;
+    }
+    .modal {
+        display: none !important;
+    }
+    #print-modal {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        background: white !important;
+        z-index: auto !important;
+    }
+    #print-modal .modal-content {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+        background: white !important;
+        position: static !important;
+    }
+    #print-content {
+        display: block !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        max-height: none !important;
+        overflow: visible !important;
+        width: 100% !important;
+        background: white !important;
+    }
+    .print-table {
+        page-break-inside: auto !important;
+    }
+    .print-table tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+    .print-table thead {
+        display: table-header-group;
+    }
+}
