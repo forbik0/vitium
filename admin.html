@@ -9,7 +9,7 @@
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/admin.css"> 
+    <link rel="stylesheet" href="css/admin.css?ver=1.0.0"> 
 </head>
 <body>
     <nav class="navbar">
@@ -55,7 +55,13 @@
             <hr style="margin: 40px 0; border: 0; border-top: 1px solid #ddd;">
 
             <div id="reservations-section" style="display: none; animation: fadeInUp 0.4s ease-out;">
-                <h3 id="res-detail-title" style="color: var(--color-primary); margin-bottom: 20px;">Rezervace pro: ---</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h3 id="res-detail-title" style="color: var(--color-primary); margin: 0;">Rezervace pro: ---</h3>
+                    <div style="display: flex; gap: 10px;">
+                        <button id="btn-refresh-reservations" class="ticket-btn" style="border: none; cursor: pointer; padding: 8px 15px; font-size: 0.9rem;">Obnovit</button>
+                        <button id="btn-print-reservations" class="ticket-btn" style="border: none; cursor: pointer; padding: 8px 15px; font-size: 0.9rem; background-color: var(--color-primary);color: white;">Tisk</button>
+                    </div>
+                </div>
                 
                 <div class="table-responsive">
                     <table class="admin-table">
@@ -135,7 +141,20 @@
         </div>
     </div>
     
+    <div id="print-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="document.getElementById('print-modal').style.display='none';">&times;</span>
+            <div id="print-toolbar">
+                <button class="ticket-btn" onclick="window.print()">Tisk</button>
+                <button class="ticket-btn close-btn" onclick="document.getElementById('print-modal').style.display='none';">Zavřít</button>
+            </div>
+            <div id="print-content">
+                <!-- Obsah se vygeneruje v JS -->
+            </div>
+        </div>
+    </div>
+    
     <script src="js/config.js?ver=1.1.0"></script>
-    <script src="js/admin.js?v=0.7.0"></script>
+    <script src="js/admin.js?v=0.8.0"></script>
 </body>
 </html>

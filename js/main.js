@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', function() {
 // Performance Filtering
 document.addEventListener('DOMContentLoaded', function() {
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const performanceItems = document.querySelectorAll('.performance-item');
 
+    // Add click event to filter buttons
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             // Remove active class from all buttons
@@ -49,28 +49,9 @@ document.addEventListener('DOMContentLoaded', function() {
             this.classList.add('active');
 
             const filterValue = this.getAttribute('data-filter');
-
-            performanceItems.forEach(item => {
-                if (filterValue === 'all') {
-                    item.style.display = 'grid';
-                    item.style.animation = 'fadeInUp 0.3s ease-out';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-
-            // Show filtered items
-            if (filterValue !== 'all') {
-                performanceItems.forEach(item => {
-                    const dateAttr = item.getAttribute('data-date');
-                    if (filterValue === 'month' && dateAttr.startsWith('2026-04')) {
-                        item.style.display = 'grid';
-                        item.style.animation = 'fadeInUp 0.3s ease-out';
-                    } else if (filterValue === 'may' && dateAttr.startsWith('2026-05')) {
-                        item.style.display = 'grid';
-                        item.style.animation = 'fadeInUp 0.3s ease-out';
-                    }
-                });
+            // Call global filter function from performances-loader.js
+            if (typeof applyPerformanceFilter === 'function') {
+                applyPerformanceFilter(filterValue);
             }
         });
     });

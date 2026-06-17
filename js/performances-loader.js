@@ -1,5 +1,65 @@
 // performances-loader.js
 
+// Global filter function
+function applyPerformanceFilter(filterValue = 'future') {
+    const performanceItems = document.querySelectorAll('.performance-item');
+    const performancesList = document.getElementById('performances-list');
+    
+    // Get today's date at midnight
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const todayString = today.getFullYear() + '-' + 
+                        String(today.getMonth() + 1).padStart(2, '0') + '-' + 
+                        String(today.getDate()).padStart(2, '0');
+
+    let visibleCount = 0;
+
+    performanceItems.forEach(item => {
+        const dateAttr = item.getAttribute('data-date');
+        const performanceDate = dateAttr; // Format: YYYY-MM-DD
+        
+        let shouldShow = false;
+        
+        if (filterValue === 'future') {
+            // Show performances where date >= today
+            shouldShow = performanceDate >= todayString;
+            // Show ticket button for future performances
+            item.classList.remove('hide-action');
+        } else if (filterValue === 'past') {
+            // Show performances where date < today
+            shouldShow = performanceDate < todayString;
+            // Hide ticket button for past performances
+            item.classList.add('hide-action');
+        }
+        
+        if (shouldShow) {
+            item.style.display = 'grid';
+            item.style.animation = 'fadeInUp 0.3s ease-out';
+            visibleCount++;
+        } else {
+            item.style.display = 'none';
+        }
+    });
+
+    // Show or hide "no performances" message
+    let noPerformancesMsg = document.getElementById('no-performances-message');
+    if (visibleCount === 0) {
+        if (!noPerformancesMsg) {
+            noPerformancesMsg = document.createElement('p');
+            noPerformancesMsg.id = 'no-performances-message';
+            noPerformancesMsg.textContent = 'Nejsou naplánována žádná vystoupení.';
+            noPerformancesMsg.style.textAlign = 'center';
+            noPerformancesMsg.style.padding = '2rem';
+            noPerformancesMsg.style.color = '#666';
+            performancesList.appendChild(noPerformancesMsg);
+        }
+    } else {
+        if (noPerformancesMsg) {
+            noPerformancesMsg.remove();
+        }
+    }
+}
+
 async function loadAndRenderPerformances() {
     try {
         const response = await fetch(`${CONFIG.API_PUBLIC_URL}/events`);
@@ -60,6 +120,9 @@ async function loadAndRenderPerformances() {
                 </div>
             `;
         }).join('');
+        
+        // Apply filter after rendering performances
+        applyPerformanceFilter('future');
         
     } catch (error) {
         console.error('Chyba při načítání představení z API:', error);
