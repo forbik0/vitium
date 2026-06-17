@@ -25,7 +25,7 @@
     <link rel="manifest" href="/site.webmanifest">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
-    <link rel="stylesheet" href="css/style.css?v=1.0.6">
+    <link rel="stylesheet" href="css/style.css?v=1.0.7">
     <link rel="stylesheet" href="css/responsive.css?v=1.0.0">
 
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
@@ -120,8 +120,8 @@
                         a právě tyto nedokonalosti v každém z nás jsou oknem do autentičnosti a lidskosti.
                     </p>
                     <p>
-                        Naší základnou je Praha a naše dveře jsou otevřené všem. Nejsme uzavřený kolektiv
-                        a rádi navážeme spolupráci s každým, kdo se chce stát součástí naší divadelní cesty.
+                        Naší základnou je Praha. Jsme sice pevně semknutý a sehraný kolektiv, ale novým impulsům se nevyhýbáme. 
+                        Rádi navážeme spolupráci v jakékoli formě, pokud bude dávat smysl oběma stranám.
                     </p>
                 </div>
                 <div class="about-stats">
@@ -145,13 +145,12 @@
     <!-- Vystoupení Section -->
     <section id="vystoupeni" class="section performances">
         <div class="container">
-            <h2 class="section-title">Nadcházející Vystoupení</h2>
-<!--             
+            <h2 class="section-title">Vystoupení</h2>
+            
             <div class="performances-filter">
-                <button class="filter-btn active" data-filter="all">Všechna</button>
-                <button class="filter-btn" data-filter="month">Duben 2026</button>
-                <button class="filter-btn" data-filter="may">Květen 2026</button>
-            </div> -->
+                <button class="filter-btn active" data-filter="future">Nadcházející</button>
+                <button class="filter-btn" data-filter="past">Odehrané</button>
+            </div>
 
             <div class="performances-list" id="performances-list">
                 <!-- Vyplní se JavaScriptem -->
@@ -239,7 +238,10 @@
             <a class="gallery-item" href="gallery/foto22.jpeg" target="_blank"><img src="gallery/foto22.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
             <a class="gallery-item" href="gallery/foto26.jpg" target="_blank"><img src="gallery/foto26.jpg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>   
             <a class="gallery-item" href="gallery/foto27.jpeg" target="_blank"><img src="gallery/foto27.jpeg" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>   
-            <a class="gallery-item" href="gallery/foto28.jpg" target="_blank"><img src="gallery/foto28.jpg" alt="Plakát na Improshow v divadle Spektrum v Praze" loading="lazy" /></a>   
+            <a class="gallery-item" href="gallery/foto28.jpg" target="_blank"><img src="gallery/foto28.jpg" alt="Plakát na Improshow v divadle Spektrum v Praze" loading="lazy" /></a> 
+            <a class="gallery-item" href="gallery/IMG_5717.JPG" target="_blank"><img src="gallery/IMG_5717.JPG" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>
+            <a class="gallery-item" href="gallery/IMG_5742.JPG" target="_blank"><img src="gallery/IMG_5742.JPG" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>   
+            <a class="gallery-item" href="gallery/IMG_5766.JPG" target="_blank"><img src="gallery/IMG_5766.JPG" alt="Zkouška amatérského divadelního souboru Vitium v Praze" loading="lazy" /></a>     
         </div>
     </div>
 </section>
@@ -303,7 +305,7 @@
                     </div>
                     <h3 class="member-name">Anna Pokryvačová</h3>
                     <p class="member-role">Herecký soubor</p>
-                    <p class="member-bio">...</p>
+                    <p class="member-bio">Nespoutaná rebelka, která na jeviště přináší zdravou mladistvou drzost, naprostou osobitost a energii, která s radostí boří veškerá divadelní pravidla.</p>
                 </div>
                 <div class="member-card">
                     <div class="member-image">
@@ -337,14 +339,14 @@
                     <p class="member-role">Herecký soubor</p>
                     <p class="member-bio">Chameleon souboru s darem naprosté transformace. S neuvěřitelnou pravdivostí a lehkostí vdechuje život nejrůznějším charakterům, včetně ženských rolí.</p>
                 </div>
-                <div class="member-card">
+                <!-- <div class="member-card">
                     <div class="member-image">    
                         <img src="images/p_misa.jpg" alt="Portrét herce amatérského divadelního souboru Vitium Praha - Michaela Kantorová">
                     </div>
                     <h3 class="member-name">Michaela Kantorová</h3>
                     <p class="member-role">Herecký soubor</p>
                     <p class="member-bio">...</p>
-                </div>
+                </div> -->
                 <div class="member-card">
                     <div class="member-image">    
                     </div>
@@ -463,8 +465,8 @@
             .bindPopup('<strong>Divadlo Spektrum</strong><br>Karlínské náměstí 7<br>186 00 Praha 8');
     </script>
     <script src="js/config.js?ver=1.1.0"></script>
-    <script src="js/main.js?ver=1.0.0"></script>
-    <script src="js/performances-loader.js?ver=1.3.1"></script>
+    <script src="js/performances-loader.js?ver=1.4.0"></script>
+    <script src="js/main.js?ver=1.0.1"></script>
     <script src="js/send_form.js?ver=1.2.0"></script>
     <script src="js/gallery.js?ver=1.1.0"></script>
 </body>
