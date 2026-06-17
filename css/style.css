@@ -780,6 +780,10 @@ a:hover {
     transform: translateX(5px);
 }
 
+.performance-item.hide-action .performance-action {
+    display: none !important;
+}
+
 .performance-date {
     display: flex;
     flex-direction: column;
