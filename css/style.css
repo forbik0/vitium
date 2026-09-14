@@ -178,15 +178,22 @@ a:hover {
     color: var(--color-primary);
 }
 
-.navbar-logo-ds {
-    background: var(--color-primary) url('../images/web_logo_i.svg') no-repeat center center;
-    background-size: 20px;
-    color: transparent;
-    /* var(--color-secondary);*/
+.navbar-logo-ds{
+    background: var(--color-primary);
     padding: 5px;
     min-width: 32px;
     text-align: center;
     border-radius: 5px;
+    position: relative;
+}
+
+.navbar-logo-ds img {
+    width: -1px;
+    height: 28px;
+    margin: 0;
+    position: absolute;
+    left: 6px;
+    bottom: 2px;
 }
 
 
@@ -315,21 +322,15 @@ a:hover {
     position: relative;
     z-index: 10;
     text-align: center;
-    animation: fadeInUp 1s ease-out;
+    animation: fadeInUp 2s ease-out;
 }
 
 .hero-title {
-    font-size: 5rem;
-    font-weight: bold;
-    letter-spacing: 8px;
-    margin-bottom: var(--spacing-md);
-    color: transparent;
+    margin-bottom: var(--spacing-lg);
+}
 
-    background: url('../images/web_logo_main.svg') no-repeat center center;
-    background-size: 32rem;
-
-    padding-bottom: 50px;
-    margin-bottom: -50px;
+.hero-title img{
+    width: 32rem;
 }
 
 .hero-title-highlight {
