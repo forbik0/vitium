@@ -1081,7 +1081,7 @@ a:hover {
 
 @keyframes fadeInUp {
     from {
-        opacity: 0;
+        opacity: 0.3;
         transform: translateY(30px);
     }
 
