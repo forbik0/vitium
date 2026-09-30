@@ -1027,10 +1027,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/*.footer-bottom a:hover {
-    color: var(--color-accent);
-} */
-
 a.admin-door {
     color: inherit;
     text-decoration: none;
