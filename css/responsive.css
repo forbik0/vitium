@@ -17,9 +17,8 @@
         padding: 0 var(--spacing-md);
     }
 
-    .hero-title {
-        font-size: 3.5rem;
-        background-size: 20rem;
+    .hero-title img {
+        width: 20rem;
     }
 
     .about-content {
@@ -37,6 +36,11 @@
     .contact-info {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+    .navbar-container{
+        padding: 0 var(--spacing-sm);
+    }
+    
 }
 
 /* Mobilní zařízení (481px - 767px) */
@@ -77,6 +81,10 @@
         padding: var(--spacing-md) 0;
     }
 
+    .navbar-container{
+        padding: 0 var(--spacing-lg);
+    }
+
     .hamburger {
         display: flex;
     }
@@ -97,18 +105,6 @@
     .hero {
         min-height: calc(100dvh - 60px);
         padding: 0;
-    }
-
-    .hero-title {
-        font-size: 2.5rem;
-        letter-spacing: 4px;
-        background-size: 20rem;
-        padding: 150px 50px;
-        margin: -150px -50px;
-    }
-
-    .hero-subtitle {
-        font-size: 1.5rem;
     }
 
     .hero-tagline {
